@@ -1,0 +1,55 @@
+# 📚 Como Fazer Upload para o GitHub
+
+## Passo 1: Baixe o arquivo ZIP
+Clique no link abaixo para baixar:
+**`curso-historia-enem-site.zip`**
+
+## Passo 2: Extraia o ZIP
+Extraia todos os arquivos em uma pasta no seu computador.
+
+## Passo 3: Crie um novo repositório no GitHub
+1. Acesse https://github.com/new
+2. Nome do repositório: `historia_enem` (ou outro nome)
+3. Deixe público
+4. Clique em "Create repository"
+
+## Passo 4: Faça upload dos arquivos
+1. No seu repositório, clique em "uploading an existing file"
+2. Arraste TODOS os arquivos extraídos do ZIP
+3. Clique em "Commit changes"
+
+## Passo 5: Ative o GitHub Pages
+1. Vá em **Settings** → **Pages**
+2. Em **Source**, selecione **GitHub Actions**
+3. O deploy será automático!
+
+## Passo 6: Acesse seu site
+Aguarde alguns minutos e acesse:
+`https://alexsantossp71.github.io/historia_enem/`
+
+---
+
+## 🔧 Alternativa: Via Git (mais rápido)
+
+Se você tem Git instalado:
+
+```bash
+# Extraia o ZIP
+cd curso-historia-enem-site
+
+# Inicie o repositório
+git init
+git add .
+git commit -m "Criar site do curso de História ENEM"
+
+# Conecte ao seu GitHub
+git remote add origin https://github.com/Alexsantossp71/historia_enem.git
+git branch -M main
+git push -u origin main --force
+```
+
+---
+
+## ❓ Precisa de ajuda?
+
+Se tiver problemas, me chame!

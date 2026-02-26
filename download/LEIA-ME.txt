@@ -1,0 +1,84 @@
+# 📚 Curso de História para o ENEM - GitHub Pages
+
+## ✅ O que está incluído:
+
+Este ZIP contém o site **pronto para upload** no GitHub Pages!
+
+- ✅ 4 Módulos completos
+- ✅ 21 aulas com conteúdo didático
+- ✅ Questões interativas do ENEM
+- ✅ Design responsivo (funciona em celular)
+- ✅ 100% gratuito
+
+---
+
+## 🚀 Como hospedar no GitHub Pages (FÁCIL):
+
+### Passo 1: Acesse seu repositório
+https://github.com/Alexsantossp71/historia_enem
+
+### Passo 2: Delete os arquivos antigos
+- Se houver arquivos antigos, delete todos
+
+### Passo 3: Faça upload dos arquivos deste ZIP
+1. Extraia o arquivo `curso-historia-github-pages.zip`
+2. No GitHub, clique em **"Add file"** → **"Upload files"**
+3. Arraste **TODOS** os arquivos extraídos (não a pasta, só os arquivos!)
+4. Clique em **"Commit changes"**
+
+### Passo 4: Ative o GitHub Pages
+1. Vá em **Settings** (Configurações)
+2. No menu lateral, clique em **Pages**
+3. Em **Source**, selecione **Deploy from a branch**
+4. Selecione a branch **main** e pasta **/ (root)**
+5. Clique em **Save**
+
+### Passo 5: Acesse seu site! 🎉
+Aguarde alguns minutos e acesse:
+```
+https://alexsantossp71.github.io/historia_enem/
+```
+
+---
+
+## 📁 Estrutura dos arquivos:
+
+```
+historia_enem/
+├── index.html          ← Página inicial
+├── modulos.html        ← Lista de módulos
+├── modulos/
+│   ├── historia-brasil/
+│   │   ├── povos-indigenas.html
+│   │   ├── periodo-pre-colonial.html
+│   │   └── ... (mais aulas)
+│   ├── historia-geral/
+│   ├── historia-america/
+│   └── historia-africa/
+└── _next/              ← Arquivos do sistema (não apagar!)
+```
+
+---
+
+## ❓ Problemas comuns:
+
+**O site não abre?**
+- Verifique se o GitHub Pages está ativado em Settings → Pages
+- Aguarde alguns minutos para o deploy
+
+**Página 404?**
+- Certifique-se de fazer upload dos ARQUIVOS, não da pasta
+- O arquivo `index.html` deve estar na raiz
+
+**Links não funcionam?**
+- O nome do repositório deve ser `historia_enem` (com underline)
+
+---
+
+## 💡 Dica:
+
+Se quiser mudar o nome do repositório, edite o arquivo que está no final de cada HTML e troque `/historia_enem/` pelo novo nome.
+
+---
+
+**Bons estudos! 🎓**
