@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos - Pré-História</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+        h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .subtitle { color: #888; }
+        
+        .game-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            color: #e8e8e8;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-color: transparent;
+        }
+        
+        .game-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .game-section { display: none; }
+        .game-section.active { display: block; }
+        
+        /* Quiz */
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #f59e0b;
+        }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; }
+        .quiz-option {
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quiz-option:hover { border-color: #4f46e5; background: rgba(79, 70, 229, 0.1); }
+        .quiz-option.correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.2); }
+        .quiz-option.wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.2); }
+        
+        /* Flashcards */
+        .flashcard {
+            width: 100%;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        .flashcard-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .flashcard-front {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            font-size: 1.2rem;
+        }
+        .flashcard-back {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            transform: rotateY(180deg);
+            font-size: 1rem;
+        }
+        
+        /* Timeline */
+        .timeline-game { position: relative; padding-left: 2rem; }
+        .timeline-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4f46e5;
+            cursor: grab;
+            transition: all 0.3s;
+        }
+        .timeline-item:hover { transform: translateX(10px); }
+        .timeline-item.correct { border-left-color: #22c55e; }
+        .timeline-item.wrong { border-left-color: #ef4444; }
+        
+        /* Memory */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        .memory-card.flipped { background: rgba(255,255,255,0.1); }
+        .memory-card.matched { background: rgba(34, 197, 94, 0.3); cursor: default; }
+        
+        /* Fill Blanks */
+        .fill-question {
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+        .fill-blank {
+            display: inline-block;
+            min-width: 100px;
+            border-bottom: 2px solid #f59e0b;
+            margin: 0 0.25rem;
+            padding: 0 0.5rem;
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        .fill-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .fill-word {
+            padding: 0.5rem 1rem;
+            background: rgba(245, 158, 11, 0.2);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .fill-word:hover { background: rgba(245, 158, 11, 0.4); }
+        .fill-word.used { opacity: 0.3; cursor: default; }
+        
+        .score {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            color: #f59e0b;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .btn:hover { opacity: 0.9; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Jogos - Pré-História</h1>
+            <p class="subtitle">Teste seus conhecimentos de forma divertida!</p>
+        </header>
+
+        <div class="game-tabs">
+            <button class="tab-btn active" onclick="showGame('quiz')">📝 Quiz</button>
+            <button class="tab-btn" onclick="showGame('flashcards')">🃏 Flashcards</button>
+            <button class="tab-btn" onclick="showGame('timeline')">📅 Linha do Tempo</button>
+            <button class="tab-btn" onclick="showGame('memory')">🧠 Memória</button>
+            <button class="tab-btn" onclick="showGame('fill')">✏️ Complete</button>
+        </div>
+
+        <div class="game-container">
+            <!-- QUIZ -->
+            <div id="quiz" class="game-section active">
+                <h2 style="margin-bottom: 1rem;">📝 Quiz - Pré-História</h2>
+                <div id="quizContainer"></div>
+                <div class="score" id="quizScore"></div>
+                <button class="btn" onclick="resetQuiz()">Reiniciar Quiz</button>
+            </div>
+
+            <!-- FLASHCARDS -->
+            <div id="flashcards" class="game-section">
+                <h2 style="margin-bottom: 1rem;">🃏 Flashcards</h2>
+                <p style="color: #888; margin-bottom: 1rem;">Clique no cartão para virar</p>
+                <div id="flashcardContainer"></div>
+                <div class="score">Cartão <span id="cardNum">1</span> de <span id="totalCards">5</span></div>
+                <button class="btn" onclick="nextCard()">Próximo Cartão</button>
+            </div>
+
+            <!-- TIMELINE -->
+            <div id="timeline" class="game-section">
+                <h2 style="margin-bottom: 1rem;">📅 Linha do Tempo</h2>
+                <p style="color: #888; margin-bottom: 1rem;">Organize os eventos na ordem cronológica correta</p>
+                <div id="timelineContainer"></div>
+                <button class="btn" onclick="checkTimeline()">Verificar Ordem</button>
+                <div class="score" id="timelineScore"></div>
+            </div>
+
+            <!-- MEMORY -->
+            <div id="memory" class="game-section">
+                <h2 style="margin-bottom: 1rem;">🧠 Jogo da Memória</h2>
+                <p style="color: #888; margin-bottom: 1rem;">Encontre os pares correspondentes</p>
+                <div class="memory-grid" id="memoryContainer"></div>
+                <div class="score">Tentativas: <span id="attempts">0</span></div>
+                <button class="btn" onclick="resetMemory()">Reiniciar</button>
+            </div>
+
+            <!-- FILL BLANKS -->
+            <div id="fill" class="game-section">
+                <h2 style="margin-bottom: 1rem;">✏️ Complete as Frases</h2>
+                <div id="fillContainer"></div>
+                <div class="score" id="fillScore"></div>
+                <button class="btn" onclick="resetFill()">Reiniciar</button>
+            </div>
+        </div>
+
+        <a href="/historia_enem/aula/pre-historia" class="back-link">← Voltar para a aula</a>
+    </div>
+
+    <script>
+        // Game data for Pre-História
+        const quizQuestions = [
+            { q: "Qual período da Pré-História é conhecido como 'Idade da Pedra Lascada'?", options: ["Neolítico", "Paleolítico", "Idade dos Metais", "Idade do Bronze"], answer: 1 },
+            { q: "Qual foi uma das principais conquistas do Paleolítico?", options: ["Agricultura", "Domínio do fogo", "Escrita", "Cerâmica"], answer: 1 },
+            { q: "A Revolução Neolítica é marcada por:", options: ["Modo de vida nômade", "Sedentarização e agricultura", "Arte rupestre", "Descoberta do fogo"], answer: 1 },
+            { q: "Qual era o modo de vida dos humanos no Paleolítico?", options: ["Sedentário", "Nômade", "Urbano", "Industrial"], answer: 1 },
+            { q: "A Idade do Bronze é caracterizada pela liga de:", options: ["Ferro e cobre", "Cobre e estanho", "Ouro e prata", "Chumbo e zinco"], answer: 1 }
+        ];
+
+        const flashcardsData = [
+            { front: "Paleolítico", back: "Período mais longo da história humana (99%), modo de vida nômade, pedra lascada, descoberta do fogo" },
+            { front: "Neolítico", back: "Revolução Neolítica: agricultura, pecuária, sedentarização, cerâmica, tecelagem" },
+            { front: "Idade dos Metais", back: "Dividida em: Idade do Cobre, Idade do Bronze e Idade do Ferro" },
+            { front: "Arte Rupestre", back: "Pinturas em cavernas representando animais e cenas de caça - importante registro do Paleolítico" },
+            { front: "Sedentarização", back: "Fixação em aldeias, possibilitada pela agricultura e domesticação de animais" }
+        ];
+
+        const timelineEvents = [
+            { text: "Paleolítico - Modo de vida nômade", order: 1 },
+            { text: "Domínio do fogo", order: 2 },
+            { text: "Neolítico - Início da agricultura", order: 3 },
+            { text: "Idade do Bronze", order: 4 },
+            { text: "Invenção da escrita - Fim da Pré-História", order: 5 }
+        ];
+
+        const memoryPairs = [
+            { id: 1, term: "Paleolítico", match: "Pedra Lascada" },
+            { id: 2, term: "Neolítico", match: "Agricultura" },
+            { id: 3, term: "Fogo", match: "Cozinhar alimentos" },
+            { id: 4, term: "Nômade", match: "Sem moradia fixa" },
+            { id: 5, term: "Sedentário", match: "Vivem em aldeias" },
+            { id: 6, term: "Bronze", match: "Cobre + Estanho" }
+        ];
+
+        const fillQuestions = [
+            { text: "O _______ é o período mais longo da história humana.", answer: "Paleolítico", options: ["Paleolítico", "Neolítico", "Bronze"] },
+            { text: "A Revolução _______ trouxe a agricultura e a sedentarização.", answer: "Neolítica", options: ["Neolítica", "Industrial", " Francesa"] },
+            { text: "Os humanos do Paleolítico viviam de caça, pesca e _______.", answer: "coleta", options: ["coleta", "agricultura", "comércio"] },
+            { text: "O domínio do _______ permitiu cozinhar alimentos e se aquecer.", answer: "fogo", options: ["fogo", "ferro", " bronze"] }
+        ];
+
+        // Quiz functions
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            const q = quizQuestions[currentQuestion];
+            container.innerHTML = `
+                <p class="quiz-question">${currentQuestion + 1}. ${q.q}</p>
+                <div class="quiz-options">
+                    ${q.options.map((opt, i) => `
+                        <div class="quiz-option" onclick="checkAnswer(${i})">${opt}</div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function checkAnswer(selected) {
+            const options = document.querySelectorAll('.quiz-option');
+            const correct = quizQuestions[currentQuestion].answer;
+            options.forEach((opt, i) => {
+                if (i === correct) opt.classList.add('correct');
+                if (i === selected && i !== correct) opt.classList.add('wrong');
+            });
+            if (selected === correct) score++;
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizQuestions.length) {
+                    loadQuiz();
+                } else {
+                    document.getElementById('quizScore').innerText = `Pontuação: ${score}/${quizQuestions.length}`;
+                    currentQuestion = 0;
+                }
+            }, 1000);
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quizScore').innerText = '';
+            loadQuiz();
+        }
+
+        // Flashcards functions
+        let currentCard = 0;
+
+        function loadFlashcard() {
+            const card = flashcardsData[currentCard];
+            document.getElementById('flashcardContainer').innerHTML = `
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">${card.front}</div>
+                        <div class="flashcard-back">${card.back}</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('cardNum').innerText = currentCard + 1;
+            document.getElementById('totalCards').innerText = flashcardsData.length;
+        }
+
+        function nextCard() {
+            currentCard = (currentCard + 1) % flashcardsData.length;
+            loadFlashcard();
+        }
+
+        // Timeline functions
+        function loadTimeline() {
+            const shuffled = [...timelineEvents].sort(() => Math.random() - 0.5);
+            document.getElementById('timelineContainer').innerHTML = shuffled.map((e, i) => `
+                <div class="timeline-item" data-order="${e.order}">${e.text}</div>
+            `).join('');
+            document.getElementById('timelineScore').innerText = '';
+        }
+
+        function checkTimeline() {
+            const items = document.querySelectorAll('.timeline-item');
+            let correct = 0;
+            items.forEach((item, i) => {
+                if (parseInt(item.dataset.order) === i + 1) {
+                    item.classList.add('correct');
+                    correct++;
+                } else {
+                    item.classList.add('wrong');
+                }
+            });
+            document.getElementById('timelineScore').innerText = `${correct}/${timelineEvents.length} corretos!`;
+        }
+
+        // Memory functions
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let attempts = 0;
+
+        function loadMemory() {
+            const cards = [];
+            memoryPairs.forEach(pair => {
+                cards.push({ type: 'term', text: pair.term, id: pair.id });
+                cards.push({ type: 'match', text: pair.match, id: pair.id });
+            });
+            const shuffled = cards.sort(() => Math.random() - 0.5);
+            document.getElementById('memoryContainer').innerHTML = shuffled.map((card, i) => `
+                <div class="memory-card" data-id="${card.id}" data-type="${card.type}" onclick="flipCard(this, '${card.text}')">
+                    ❓
+                </div>
+            `).join('');
+            matchedPairs = 0;
+            attempts = 0;
+            document.getElementById('attempts').innerText = 0;
+        }
+
+        function flipCard(card, text) {
+            if (card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) return;
+            
+            card.classList.add('flipped');
+            card.innerText = text;
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                attempts++;
+                document.getElementById('attempts').innerText = attempts;
+                
+                if (flippedCards[0].dataset.id === flippedCards[1].dataset.id) {
+                    flippedCards.forEach(c => c.classList.add('matched'));
+                    matchedPairs++;
+                    flippedCards = [];
+                    if (matchedPairs === memoryPairs.length) {
+                        alert(`Parabéns! Você encontrou todos os pares em ${attempts} tentativas!`);
+                    }
+                } else {
+                    setTimeout(() => {
+                        flippedCards.forEach(c => {
+                            c.classList.remove('flipped');
+                            c.innerText = '❓';
+                        });
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+
+        function resetMemory() {
+            loadMemory();
+        }
+
+        // Fill blanks functions
+        let fillScore = 0;
+
+        function loadFill() {
+            fillScore = 0;
+            const container = document.getElementById('fillContainer');
+            container.innerHTML = fillQuestions.map((q, qi) => `
+                <div class="fill-question" data-answer="${q.answer}">
+                    ${q.text.replace('_______', `<span class="fill-blank" id="blank${qi}">_______</span>`)}
+                </div>
+                <div class="fill-options">
+                    ${q.options.map(opt => `
+                        <span class="fill-word" onclick="selectWord(${qi}, '${opt}', this)">${opt}</span>
+                    `).join('')}
+                </div>
+            `).join('');
+            document.getElementById('fillScore').innerText = '';
+        }
+
+        function selectWord(qIndex, word, element) {
+            if (element.classList.contains('used')) return;
+            document.getElementById(`blank${qIndex}`).innerText = word;
+            element.classList.add('used');
+            
+            const correct = fillQuestions[qIndex].answer;
+            if (word === correct) {
+                fillScore++;
+            }
+            
+            const total = fillQuestions.length;
+            if (document.querySelectorAll('.fill-word.used').length >= total) {
+                document.getElementById('fillScore').innerText = `Pontuação: ${fillScore}/${total}`;
+            }
+        }
+
+        function resetFill() {
+            loadFill();
+        }
+
+        // Tab switching
+        function showGame(gameId) {
+            document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(gameId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize
+        loadQuiz();
+        loadFlashcard();
+        loadTimeline();
+        loadMemory();
+        loadFill();
+    </script>
+</body>
+</html>

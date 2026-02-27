@@ -36,6 +36,85 @@
             color: #888;
             font-style: italic;
         }
+        
+        /* Player de Áudio */
+        .audio-player {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+        }
+        .play-btn.playing {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        .speed-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .speed-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            color: #e8e8e8;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .speed-btn:hover, .speed-btn.active {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: #8b5cf6;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            width: 0%;
+            transition: width 0.1s;
+        }
+        .status-text {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
         .story {
             background: rgba(255,255,255,0.03);
             padding: 2rem;
@@ -47,6 +126,12 @@
             margin-bottom: 1.5rem;
             text-indent: 2rem;
             text-align: justify;
+            transition: background 0.3s;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .story p.highlight {
+            background: rgba(139, 92, 246, 0.2);
         }
         .story p:first-child::first-letter {
             font-size: 4rem;
@@ -61,6 +146,31 @@
             font-style: italic;
             color: #888;
             margin-top: 2rem;
+        }
+        .concepts {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 2rem;
+        }
+        .concepts h3 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .concepts ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .concepts li {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #93c5fd;
         }
         .back-link {
             display: inline-flex;
@@ -90,22 +200,51 @@
             <p class="subtitle">Um conto da Pré-História</p>
         </header>
 
-        <div class="story">
-            <p>A Lua cheia iluminava a planície gelada quando Krog despertou com um sobressalto. O vento uivava lá fora, trazendo consigo o temido cheiro do inverno que se aproximava. Ao seu lado, os mais velhos do bando tremiam sob as peles de mamute, seus corpos já não retendo o calor como antes. Krog sabia que precisava fazer algo, ou muitos não veriam o próximo nascer do sol.</p>
+        <!-- Player de Áudio -->
+        <div class="audio-player">
+            <div class="player-controls">
+                <button class="play-btn" id="playBtn" onclick="togglePlay()">▶️</button>
+            </div>
+            <div class="speed-controls">
+                <span style="color: #888; font-size: 0.9rem;">Velocidade:</span>
+                <button class="speed-btn" onclick="setSpeed(0.75)">0.75x</button>
+                <button class="speed-btn active" onclick="setSpeed(1)">1x</button>
+                <button class="speed-btn" onclick="setSpeed(1.25)">1.25x</button>
+                <button class="speed-btn" onclick="setSpeed(1.5)">1.5x</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="status-text" id="statusText">Clique no botão para ouvir a narração</p>
+        </div>
 
-            <p>Havia três luas, Krog testemunhara algo que mudara sua visão do mundo para sempre. Após uma tempestade seca, um raio atingira uma árvore e ela começara a queimar com uma chama brilhante e quente. Naquela noite, o bando aproximara-se do fogo, maravilhado com seu calor. Mas quando a chuva veio, as chamas morreram, e com elas a esperança de compreender aquele mistério.</p>
+        <div class="concepts">
+            <h3>📚 Conceitos-chave desta aula:</h3>
+            <ul>
+                <li>Paleolítico</li>
+                <li>Domínio do fogo</li>
+                <li>Modo de vida nômade</li>
+                <li>Arte rupestre</li>
+                <li>Evolução humana</li>
+            </ul>
+        </div>
 
-            <p>Krog não conseguia esquecer. Em suas mãos calejadas, ele guardava um segredo: pedras que faiscavam quando batidas umas contra as outras. Pequenas centelhas que morriam rápido demais. Mas e se houvesse um jeito de fazê-las crescer?</p>
+        <div class="story" id="storyText">
+            <p id="p1">A Lua cheia iluminava a planície gelada quando Krog despertou com um sobressalto. O vento uivava lá fora, trazendo consigo o temido cheiro do inverno que se aproximava. Ao seu lado, os mais velhos do bando tremiam sob as peles de mamute, seus corpos já não retendo o calor como antes. Krog sabia que precisava fazer algo, ou muitos não veriam o próximo nascer do sol.</p>
 
-            <p>Naquela noite gelada, enquanto o resto do bando dormia um sono inquieto, Krog reuniu folhas secas, gravetos finos e musgo ressecado. Com paciente determinação, começou a bater as pedras sobre aquele monte preparado com tanto cuidado. Uma faísca. Duas. Três. Na quarta tentativa, uma pequena chama nasceu no musgo.</p>
+            <p id="p2">Havia três luas, Krog testemunhara algo que mudara sua visão do mundo para sempre. Após uma tempestade seca, um raio atingira uma árvore e ela começara a queimar com uma chama brilhante e quente. Naquela noite, o bando aproximara-se do fogo, maravilhado com seu calor. Mas quando a chuva veio, as chamas morreram, e com elas a esperança de compreender aquele mistério.</p>
 
-            <p>O coração de Krog disparou. Com mãos trêmulas, ele soprou suavemente, alimentando a chama crescente. Adicionou gravetos maiores, e então pedaços de madeira seca. Quando o fogo finalmente crepitou com força, iluminando as paredes da caverna com sua luz dourada, Krog soube que acabara de mudar o destino de seu povo para sempre.</p>
+            <p id="p3">Krog não conseguia esquecer. Em suas mãos calejadas, ele guardava um segredo: pedras que faiscavam quando batidas umas contra as outras. Pequenas centelhas que morriam rápido demais. Mas e se houvesse um jeito de fazê-las crescer?</p>
 
-            <p>Os mais velhos acordaram primeiro, seus olhos arregalados diante do milagre. Um a um, os membros do bando foram despertando, atraindos pelo calor e pela luz. Mulheres e crianças aproximaram-se, estendendo as mãos geladas para a nova divindade que Krog trouxera ao mundo.</p>
+            <p id="p4">Naquela noite gelada, enquanto o resto do bando dormia um sono inquieto, Krog reuniu folhas secas, gravetos finos e musgo ressecado. Com paciente determinação, começou a bater as pedras sobre aquele monte preparado com tanto cuidado. Uma faísca. Duas. Três. Na quarta tentativa, uma pequena chama nasceu no musgo.</p>
 
-            <p>Nas noites que se seguiram, o fogo tornou-se o centro da vida do bando. Ao redor dele, histórias eram contadas, alimentos eram cozinhados, e os mais velhos ensinavam os mais jovens. Pela primeira vez, os humanos não tinham medo da escuridão. Pela primeira vez, podiam se aquecer nas noites mais frias. Pela primeira vez, tinham poder sobre a própria sobrevivência.</p>
+            <p id="p5">O coração de Krog disparou. Com mãos trêmulas, ele soprou suavemente, alimentando a chama crescente. Adicionou gravetos maiores, e então pedaços de madeira seca. Quando o fogo finalmente crepitou com força, iluminando as paredes da caverna com sua luz dourada, Krog soube que acabara de mudar o destino de seu povo para sempre.</p>
 
-            <p>Krog olhou para as chamas que dançavam diante de si e sorriu. Ele não sabia, mas aquele momento marcaria o início de uma revolução que transformaria a humanidade para sempre. O domínio do fogo era apenas o primeiro passo na longa jornada que levaria seus descendentes das cavernas às estrelas.</p>
+            <p id="p6">Os mais velhos acordaram primeiro, seus olhos arregalados diante do milagre. Um a um, os membros do bando foram despertando, atraídos pelo calor e pela luz. Mulheres e crianças aproximaram-se, estendendo as mãos geladas para a nova divindade que Krog trouxera ao mundo.</p>
+
+            <p id="p7">Nas noites que se seguiram, o fogo tornou-se o centro da vida do bando. Ao redor dele, histórias eram contadas, alimentos eram cozinhados, e os mais velhos ensinavam os mais jovens. Pela primeira vez, os humanos não tinham medo da escuridão. Pela primeira vez, podiam se aquecer nas noites mais frias. Pela primeira vez, tinham poder sobre a própria sobrevivência.</p>
+
+            <p id="p8">Krog olhou para as chamas que dançavam diante de si e sorriu. Ele não sabia, mas aquele momento marcaria o início de uma revolução que transformaria a humanidade para sempre. O domínio do fogo era apenas o primeiro passo na longa jornada que levaria seus descendentes das cavernas às estrelas.</p>
 
             <p class="author">— Baseado em evidências arqueológicas sobre o domínio do fogo, há aproximadamente 400.000 anos</p>
         </div>
@@ -116,5 +255,106 @@
             <p>História para ENEM - Conto Histórico</p>
         </footer>
     </div>
+
+    <script>
+        const paragraphs = [
+            document.getElementById('p1'),
+            document.getElementById('p2'),
+            document.getElementById('p3'),
+            document.getElementById('p4'),
+            document.getElementById('p5'),
+            document.getElementById('p6'),
+            document.getElementById('p7'),
+            document.getElementById('p8')
+        ];
+        
+        const texts = paragraphs.map(p => p.innerText);
+        let currentParagraph = 0;
+        let isPlaying = false;
+        let speechRate = 1;
+        let utterance = null;
+        
+        function togglePlay() {
+            if (isPlaying) {
+                stopSpeech();
+            } else {
+                startSpeech();
+            }
+        }
+        
+        function startSpeech() {
+            if (!('speechSynthesis' in window)) {
+                alert('Seu navegador não suporta síntese de voz. Tente usar Chrome, Edge ou Safari.');
+                return;
+            }
+            
+            isPlaying = true;
+            document.getElementById('playBtn').innerHTML = '⏸️';
+            document.getElementById('playBtn').classList.add('playing');
+            document.getElementById('statusText').innerText = 'Narrando...';
+            
+            speakParagraph(currentParagraph);
+        }
+        
+        function speakParagraph(index) {
+            if (index >= texts.length || !isPlaying) {
+                stopSpeech();
+                currentParagraph = 0;
+                return;
+            }
+            
+            // Remove highlight anterior
+            paragraphs.forEach(p => p.classList.remove('highlight'));
+            paragraphs[index].classList.add('highlight');
+            paragraphs[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            utterance = new SpeechSynthesisUtterance(texts[index]);
+            utterance.lang = 'pt-BR';
+            utterance.rate = speechRate;
+            utterance.pitch = 1;
+            
+            // Atualiza progresso
+            const progress = ((index + 1) / texts.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            utterance.onend = () => {
+                currentParagraph++;
+                if (isPlaying) {
+                    speakParagraph(currentParagraph);
+                }
+            };
+            
+            utterance.onerror = () => {
+                stopSpeech();
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+        
+        function stopSpeech() {
+            isPlaying = false;
+            speechSynthesis.cancel();
+            document.getElementById('playBtn').innerHTML = '▶️';
+            document.getElementById('playBtn').classList.remove('playing');
+            document.getElementById('statusText').innerText = 'Clique no botão para ouvir a narração';
+            paragraphs.forEach(p => p.classList.remove('highlight'));
+        }
+        
+        function setSpeed(speed) {
+            speechRate = speed;
+            document.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (isPlaying) {
+                speechSynthesis.cancel();
+                speakParagraph(currentParagraph);
+            }
+        }
+        
+        // Cleanup ao sair da página
+        window.onbeforeunload = () => {
+            speechSynthesis.cancel();
+        };
+    </script>
 </body>
 </html>
