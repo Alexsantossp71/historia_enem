@@ -535,6 +535,442 @@ A Revolução Industrial foi um processo de transformações econômicas, sociai
     `
   },
   {
+    slug: 'idade-contemporanea',
+    title: 'Idade Contemporânea',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_idade_contemporanea.html',
+    content: `
+## A Idade Contemporânea
+
+A Idade Contemporânea inicia-se com a Revolução Francesa (1789) e estende-se até os dias atuais, marcada por profundas transformações políticas, econômicas e sociais.
+
+## Congresso de Viena (1815)
+
+Após a derrota de Napoleão, as potências europeias se reuniram para reorganizar o mapa político do continente.
+
+### Princípios
+- Legitimidade: restaurar os reis depostos
+- Equilíbrio: distribuir poder entre as nações
+- Restauração: retornar ao Antigo Regime
+
+### Santa Aliança
+- Aliança entre Rússia, Prússia e Áustria
+- Combate às ideias revolucionárias
+- Intervenção militar contra movimentos liberais
+
+## As Revoluções de 1830 e 1848
+
+### Revolução de 1830
+- Queda de Carlos X na França
+- Monarquia de Julho (Luís Filipe)
+- Independência da Bélgica
+
+### Revoluções de 1848
+- Primavera dos Povos
+- Queda da monarquia na França
+- Movimentos liberais por toda Europa
+- Unificação da Itália e Alemanha
+
+## Dicas para o ENEM
+
+1. Compreenda a reação absolutista pós-Napoleão
+2. Analise o movimento de unificação na Europa
+3. Relacione revoluções com nacionalismo
+4. Conecte transformações políticas com econômicas
+    `
+  },
+  {
+    slug: 'imperialismo',
+    title: 'Imperialismo',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_imperialismo.html',
+    content: `
+## O Imperialismo
+
+O Imperialismo foi a expansão das potências europeias sobre a África e Ásia no século XIX, buscando matérias-primas, mercados consumidores e territórios estratégicos.
+
+## Causas do Imperialismo
+
+### Econômicas
+- Necessidade de matéria-prima para indústrias
+- Busca de mercados consumidores
+- Exportação de capitais
+
+### Políticas
+- Competição entre potências
+- Prestígio nacional
+- Estratégia militar
+
+### Ideológicas
+- Missão civilizadora
+- Racismo científico
+- Darwinsimo social
+
+## Partilha da África
+
+### Conferência de Berlim (1884-1885)
+- Divisão da África entre potências europeias
+- Regras para ocupação territorial
+- Sem participação africana
+
+### Principais Colônias
+- **Inglaterra**: Egito, África do Sul, Nigéria, Quênia
+- **França**: Argélia, Tunísia, Marrocos, África Ocidental
+- **Bélgica**: Congo
+- **Alemanha**: Tanzânia, Camarões, Namíbia
+- **Portugal**: Angola, Moçambique, Guiné
+
+## Consequências
+
+- Exploração de recursos africanos
+- Destruição de culturas locais
+- Fronteiras artificiais
+- Neocolonialismo
+
+## Dicas para o ENEM
+
+1. Relacione imperialismo com capitalismo industrial
+2. Analise impactos na África e Ásia
+3. Conecte com globalização atual
+4. Entenda racismo como justificativa ideológica
+    `
+  },
+  {
+    slug: 'primeira-guerra',
+    title: 'Primeira Guerra Mundial',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_primeira_guerra.html',
+    content: `
+## A Primeira Guerra Mundial (1914-1918)
+
+A Primeira Guerra Mundial foi o primeiro conflito de escala global, envolvendo as principais potências europeias e seus aliados, resultando em milhões de mortes e profundas transformações políticas.
+
+## Causas
+
+### Rivalidades Imperialistas
+- Disputa por colônias e mercados
+- Corrida armamentista
+- Nacionalismo exacerbado
+
+### Alianças Militares
+- **Tríplice Aliança**: Alemanha, Áustria-Hungria, Itália
+- **Tríplice Entente**: França, Inglaterra, Rússia
+
+### Estopim
+- Assassinato do arquiduque Francisco Ferdinando (1914)
+- Sarajevo, Bósnia
+
+## Desenvolvimento
+
+### Fases do Conflito
+- **Guerra de Movimento (1914)**: Ofensivas rápidas
+- **Guerra de Trincheiras (1915-1917)**: Conflito estático e brutal
+- **Fase Final (1918)**: Entrada dos EUA, retirada russa
+
+### Novas Tecnologias
+- Metralhadoras
+- Gases venenosos
+- Submarinos
+- Aviões de combate
+
+## Consequências
+
+- Cerca de 10 milhões de mortos
+- Queda dos impérios: Russo, Austro-Húngaro, Otomano, Alemão
+- Tratado de Versalhes
+- Liga das Nações
+- Redesenho do mapa europeu
+
+## Dicas para o ENEM
+
+1. Relacione imperialismo com a guerra
+2. Analise o Tratado de Versalhes e seus impactos
+3. Conecte a guerra com a Revolução Russa
+4. Entenda as consequências para o Brasil
+    `
+  },
+  {
+    slug: 'revolucao-russa',
+    title: 'Revolução Russa',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_revolucao_russa.html',
+    content: `
+## A Revolução Russa (1917)
+
+A Revolução Russa foi o primeiro movimento socialista bem-sucedido da história, criando o primeiro Estado socialista do mundo.
+
+## A Rússia antes da Revolução
+
+### Czarismo
+- Monarquia absoluta dos Romanov
+- Nicolau II (1894-1917)
+- Sociedade agrária e atrasada
+
+### Problemas
+- Camponeses sem terra
+- Operários explorados
+- Derrotas militares
+- Crise econômica
+
+## Revolução de 1905
+
+- Domingo Sangrento
+- Manifestações reprimidas
+- Criação da Duma
+- Sovietes
+
+## Revolução de 1917
+
+### Revolução de Fevereiro
+- Queda do czar
+- Governo Provisório
+- Sovietes de Petrogrado
+
+### Revolução de Outubro
+- Bolcheviques tomam o poder
+- Lênin líder
+- "Paz, pão e terra"
+
+## Governo Bolchevique
+
+### Medidas
+- Saída da guerra
+- Reforma agrária
+- Nacionalização das indústrias
+- Controle operário
+
+### Guerra Civil (1918-1921)
+- Vermelhos vs Brancos
+- Criação do Exército Vermelho
+- Comunismo de guerra
+
+### URSS (1922)
+- União das Repúblicas Socialistas Soviéticas
+- Stalin sucede Lênin (1924)
+
+## Dicas para o ENEM
+
+1. Compare Revolução Russa com Francesa
+2. Analise o papel dos bolcheviques
+3. Relacione com a Primeira Guerra
+4. Conecte com Guerra Fria
+    `
+  },
+  {
+    slug: 'segunda-guerra',
+    title: 'Entre Guerras e Segunda Guerra',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_segunda_guerra.html',
+    content: `
+## Período Entre Guerras (1919-1939)
+
+O período entre as duas guerras mundiais foi marcado pela instabilidade econômica, ascensão de regimes totalitários e preparação para novo conflito.
+
+## Crise de 1929
+
+### Causas
+- Superprodução americana
+- Especulação na bolsa
+- Distribuição desigual de renda
+
+### Quebra da Bolsa de Nova York
+- 29 de outubro de 1929 (Terça-feira Negra)
+- Crise se espalha pelo mundo
+
+### Consequências
+- Desemprego em massa
+- Falência de empresas
+- Protecionismo comercial
+
+## Ascensão do Totalitarismo
+
+### Fascismo Italiano
+- Benito Mussolini
+- Marcha sobre Roma (1922)
+- Estado corporativo
+
+### Nazismo Alemão
+- Adolf Hitler
+- Exploração do ressentimento alemão
+- Antissemitismo
+- Espaço vital (Lebensraum)
+
+## Segunda Guerra Mundial (1939-1945)
+
+### Causas
+- Expansionismo alemão
+- Política de apaziguamento
+- Falha da Liga das Nações
+
+### Desenvolvimento
+- Invasão da Polônia (1939)
+- Conquista da Europa pelos nazistas
+- Operação Barbarossa (1941)
+- Ataque a Pearl Harbor (1941)
+
+### Holocausto
+- Genocídio de 6 milhões de judeus
+- Campos de concentração
+- Solução Final
+
+### Derrota do Eixo
+- Stalingrado (1943)
+- Dia D (1944)
+- Bombas atômicas no Japão (1945)
+
+## Dicas para o ENEM
+
+1. Relacione Crise de 1929 com totalitarismo
+2. Analise as características dos regimes totalitários
+3. Conecte Holocausto com direitos humanos
+4. Entenda a criação da ONU
+    `
+  },
+  {
+    slug: 'guerra-fria',
+    title: 'Guerra Fria',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_guerra_fria.html',
+    content: `
+## A Guerra Fria (1947-1991)
+
+A Guerra Fria foi o período de tensão entre os Estados Unidos (capitalismo) e a União Soviética (socialismo), sem confronto militar direto entre as superpotências.
+
+## Origens
+
+### Conferências de Paz
+- Ialta e Potsdam (1945)
+- Divisão da Europa
+- Cortina de Ferro
+
+### Doutrina Truman (1947)
+- Contenção do comunismo
+- Ajuda econômica à Europa
+- Plano Marshall
+
+## Blocos
+
+### Bloco Capitalista
+- Liderado pelos EUA
+- OTAN (1949)
+- Economia de mercado
+- Democracia liberal
+
+### Bloco Socialista
+- Liderado pela URSS
+- Pacto de Varsóvia (1955)
+- Economia planificada
+- Partido único
+
+## Conflitos
+
+### Guerra da Coreia (1950-1953)
+- Divisão em Coreia do Norte e do Sul
+
+### Guerra do Vietnã (1964-1975)
+- Derrota americana
+- Unificação vietnamita sob o comunismo
+
+### Crise dos Mísseis (1962)
+- URSS instala mísseis em Cuba
+- Mundo à beira da guerra nuclear
+
+## Fim da Guerra Fria
+
+### Perestroika e Glasnost
+- Reformas de Gorbachev
+- Abertura política e econômica
+
+### Queda do Muro de Berlim (1989)
+- Fim da divisão da Alemanha
+
+### Dissolução da URSS (1991)
+- Fim da Guerra Fria
+- Nova ordem mundial
+
+## Dicas para o ENEM
+
+1. Compare os dois blocos ideológicos
+2. Analise os conflitos periféricos
+3. Relacione corrida armamentista com corrida espacial
+4. Conecte com o mundo contemporâneo
+    `
+  },
+  {
+    slug: 'mundo-contemporaneo',
+    title: 'Mundo Contemporâneo',
+    module: 'História Geral',
+    moduleColor: '#3b82f6',
+    contoLink: '/contos/conto_mundo_contemporaneo.html',
+    content: `
+## O Mundo Contemporâneo
+
+Após o fim da Guerra Fria, o mundo entrou em uma nova fase caracterizada pela globalização, hegemonia americana e novos desafios.
+
+## Nova Ordem Mundial
+
+### Unipolaridade (1991-2001)
+- Hegemonia dos EUA
+- "Fim da história"
+- Expansão do neoliberalismo
+
+### Multipolaridade
+- Ascensão da China
+- União Europeia
+- BRICS
+- Rússia reconstruída
+
+## Globalização
+
+### Características
+- Integração econômica mundial
+- Revolução tecnológica
+- Fluxo de informações
+- Cultura globalizada
+
+### Consequências
+- Desigualdade aumentada
+- Concentração de riqueza
+- Cadeias globais de produção
+- Migrações internacionais
+
+## Desafios Contemporâneos
+
+### Terrorismo
+- 11 de Setembro (2001)
+- Guerra ao Terror
+- Afeganistão e Iraque
+
+### Crises Econômicas
+- Crise de 2008
+- Pandemia (2020)
+- Inflação global
+
+### Mudanças Climáticas
+- Aquecimento global
+- Acordos ambientais
+- Sustentabilidade
+
+### Direitos Humanos
+- Movimentos sociais
+- Democracia em debate
+- Desigualdade estrutural
+
+## Dicas para o ENEM
+
+1. Conecte globalização com neoliberalismo
+2. Analise o papel dos EUA no mundo
+3. Relacione tecnologia com transformações sociais
+4. Entenda desafios ambientais e sociais
+    `
+  },
+  {
     slug: 'povos-indigenas',
     title: 'Período Pré-Colonial e Povos Indígenas',
     module: 'História do Brasil',
