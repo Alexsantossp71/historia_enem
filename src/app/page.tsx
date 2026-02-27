@@ -35,6 +35,7 @@ export default function Home() {
           </Link>
           <nav style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <a href="#modulos" style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none', fontWeight: 500 }}>Módulos</a>
+            <a href="/historia_enem/jogos/" style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none', fontWeight: 500 }}>🎮 Jogos</a>
             <a href="#sobre" style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none', fontWeight: 500 }}>Sobre</a>
           </nav>
         </div>
@@ -153,6 +154,38 @@ export default function Home() {
             <LessonItem number="24" title="Ditadura Militar" href="/aula/ditadura-militar" />
             <LessonItem number="25" title="Redemocratização" href="/aula/redemocratizacao" />
           </div>
+        </div>
+      </section>
+
+      {/* Games Section */}
+      <section style={{
+        background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+        padding: '3rem 1rem',
+        textAlign: 'center',
+        color: 'white'
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '1rem' }}>
+            🎮 Jogos de Fixação
+          </h2>
+          <p style={{ fontSize: '1.1rem', opacity: 0.9, marginBottom: '1.5rem', lineHeight: 1.8 }}>
+            Aprenda brincando! Pratique seus conhecimentos com jogos educacionais interativos.
+            Quiz, Caça-Palavras, Linha do Tempo e muito mais!
+          </p>
+          <a href="/historia_enem/jogos/" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '1rem 2rem',
+            background: 'white',
+            color: '#4f46e5',
+            borderRadius: '8px',
+            fontWeight: 600,
+            textDecoration: 'none',
+            fontSize: '1.1rem'
+          }}>
+            🎯 Jogar Agora →
+          </a>
         </div>
       </section>
 
