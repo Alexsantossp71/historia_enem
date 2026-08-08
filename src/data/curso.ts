@@ -31,36 +31,47 @@ export interface Exercicio {
   correta: number;
 }
 
+export interface Narrativa {
+  titulo: string;
+  descricao: string;
+  tempoLeitura: string;
+  audio?: {
+    src: string;
+    duracao: string;
+  };
+}
+
 export const modulos: Modulo[] = [
   {
-    id: '1',
-    slug: 'historia-brasil',
-    titulo: 'História do Brasil',
-    descricao: 'Do Brasil pré-colonial à redemocratização, passando pelo Império, República e Ditadura Militar.',
-    icone: '🇧🇷',
-    cor: '#22c55e',
+    id: "1",
+    slug: "historia-brasil",
+    titulo: "História do Brasil",
+    descricao:
+      "Do Brasil pré-colonial à redemocratização, passando pelo Império, República e Ditadura Militar.",
+    icone: "🇧🇷",
+    cor: "#22c55e",
     aulas: [
       {
-        id: '1-1',
-        slug: 'povos-indigenas',
-        titulo: 'Brasil Pré-Colonial: Povos Indígenas',
+        id: "1-1",
+        slug: "povos-indigenas",
+        titulo: "Brasil Pré-Colonial: Povos Indígenas",
         conteudo: `
 ## Introdução
 
 Antes da chegada dos europeus em 1500, o território que hoje corresponde ao Brasil era habitado por diversos povos indígenas há milhares de anos. Estima-se que, no momento do contato com os portugueses, havia entre 2 e 4 milhões de indígenas no território brasileiro, distribuídos em centenas de etnias diferentes, com línguas, costumes e organizações sociais distintas.
 
-## Troncos Linguísticos no Brasil
+## Diversidade Linguística no Brasil
 
-Os povos indígenas brasileiros podem ser agrupados em quatro grandes troncos linguísticos principais:
+Os povos indígenas brasileiros falam línguas pertencentes a diferentes troncos e famílias linguísticas. Essa classificação ajuda a compreender a diversidade, mas não transforma centenas de povos distintos em grupos homogêneos.
 
 ### Tronco Tupi
-Era o mais difundido, ocupando grande parte do litoral brasileiro. Incluía os Tupinambá, Tupiniquim, Potiguara, Tabajara e muitos outros.
+Abrange diversas línguas faladas historicamente em várias regiões, inclusive no litoral. Entre os povos associados a esse tronco estão Tupinambá, Tupiniquim, Potiguara e Tabajara.
 
-### Tronco Jê (Macro-Jê)
-Englobava povos que habitavam principalmente o interior do Brasil, como os Kayapó, Xavante e Bororo.
+### Macro-Jê
+Reúne famílias e línguas de povos que vivem, sobretudo, em áreas do interior, como Kayapó, Xavante e Bororo.
 
-### Troncos Aruak e Karib
-Compostos por povos que ocupavam principalmente a região Norte do Brasil.
+### Famílias Aruak e Karib
+Incluem línguas de numerosos povos, especialmente em regiões do Norte e Centro-Oeste.
 
 ## Os Tupinambá
 
@@ -84,39 +95,43 @@ Os Tupinambá foram um dos povos mais estudados pelos cronistas coloniais. Habit
 
 A guerra entre grupos indígenas era uma prática constante e tinha múltiplos significados: captura de prisioneiros, vingança e demonstração de valor guerreiro.
         `,
-        dicaEnem: 'As questões sobre povos indígenas costumam abordar a diversidade cultural, a organização social, as relações com os colonizadores e a compreensão das práticas indígenas em seus próprios termos culturais, evitando visões etnocêntricas.',
+        dicaEnem:
+          "As questões sobre povos indígenas costumam abordar a diversidade cultural, a organização social, as relações com os colonizadores e a compreensão das práticas indígenas em seus próprios termos culturais, evitando visões etnocêntricas.",
         questoes: [
           {
-            enunciado: 'Os tupinambás sentiam a necessidade da vingança para aplacar a tristeza e compensar a morte de um parente. Mas havia também um objetivo adicional. Ao matarem o prisioneiro, os indígenas tentavam absorver, por meio do canibalismo, as qualidades do inimigo — como se fosse um ato de incorporação. O texto apresenta uma explicação para o canibalismo praticado pelos tupinambás que:',
+            enunciado:
+              "Os tupinambás sentiam a necessidade da vingança para aplacar a tristeza e compensar a morte de um parente. Mas havia também um objetivo adicional. Ao matarem o prisioneiro, os indígenas tentavam absorver, por meio do canibalismo, as qualidades do inimigo — como se fosse um ato de incorporação. O texto apresenta uma explicação para o canibalismo praticado pelos tupinambás que:",
             alternativas: [
-              'reforça a ideia de que os indígenas eram selvagens e precisavam ser catequizados.',
-              'demonstra que o canibalismo era uma prática comum a todos os povos indígenas brasileiros.',
-              'revela o significado ritualístico da prática, associado à vingança e à absorção de qualidades.',
-              'indica que o canibalismo era uma forma de punição para criminosos dentro da tribo.',
-              'sugere que o canibalismo resultava da falta de alimentos nas aldeias indígenas.'
+              "reforça a ideia de que os indígenas eram selvagens e precisavam ser catequizados.",
+              "demonstra que o canibalismo era uma prática comum a todos os povos indígenas brasileiros.",
+              "revela o significado ritualístico da prática, associado à vingança e à absorção de qualidades.",
+              "indica que o canibalismo era uma forma de punição para criminosos dentro da tribo.",
+              "sugere que o canibalismo resultava da falta de alimentos nas aldeias indígenas.",
             ],
             correta: 2,
-            comentario: 'O canibalismo entre os Tupinambá tinha significado ritualístico, relacionado à vingança e à absorção das qualidades do inimigo, não sendo resultado de selvageria ou fome.'
-          }
+            comentario:
+              "O canibalismo entre os Tupinambá tinha significado ritualístico, relacionado à vingança e à absorção das qualidades do inimigo, não sendo resultado de selvageria ou fome.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'Sobre os povos indígenas que habitavam o território brasileiro antes da chegada dos portugueses, é correto afirmar:',
+            enunciado:
+              "Sobre os povos indígenas que habitavam o território brasileiro antes da chegada dos portugueses, é correto afirmar:",
             alternativas: [
-              'Constituíam um grupo homogêneo, com mesma língua e costumes.',
-              'Pertenciam exclusivamente ao tronco linguístico Tupi.',
-              'Eram divididos em diversos grupos com línguas e culturas diferentes.',
-              'Não praticavam a agricultura, vivendo apenas da caça e coleta.',
-              'Desconheciam completamente a noção de propriedade coletiva.'
+              "Constituíam um grupo homogêneo, com mesma língua e costumes.",
+              "Pertenciam exclusivamente ao tronco linguístico Tupi.",
+              "Eram divididos em diversos grupos com línguas e culturas diferentes.",
+              "Não praticavam a agricultura, vivendo apenas da caça e coleta.",
+              "Desconheciam completamente a noção de propriedade coletiva.",
             ],
-            correta: 2
-          }
-        ]
+            correta: 2,
+          },
+        ],
       },
       {
-        id: '1-2',
-        slug: 'periodo-pre-colonial',
-        titulo: 'Período Pré-Colonial (1500-1530)',
+        id: "1-2",
+        slug: "periodo-pre-colonial",
+        titulo: "Período Pré-Colonial (1500-1530)",
         conteudo: `
 ## Introdução
 
@@ -163,39 +178,43 @@ A relação entre portugueses e indígenas foi marcada pelo escambo comercial:
 - Fundação de São Vicente (1532)
 - Início do sistema de Capitanias Hereditárias
         `,
-        dicaEnem: 'O período pré-colonial é frequentemente cobrado em questões sobre o escambo, as feitorias, e a transição para a colonização efetiva. Entenda as diferenças entre exploração e colonização.',
+        dicaEnem:
+          "O período pré-colonial é frequentemente cobrado em questões sobre o escambo, as feitorias, e a transição para a colonização efetiva. Entenda as diferenças entre exploração e colonização.",
         questoes: [
           {
-            enunciado: 'Durante o período denominado "pré-colonial", a relação entre portugueses e indígenas foi marcada pelo escambo, que consistia na:',
+            enunciado:
+              'Durante o período denominado "pré-colonial", a relação entre portugueses e indígenas foi marcada pelo escambo, que consistia na:',
             alternativas: [
-              'utilização da mão de obra indígena para a agricultura de exportação.',
-              'captura de indígenas para serem vendidos como escravos na Europa.',
-              'troca de produtos europeus por pau-brasil extraído pelos indígenas.',
-              'conversão dos indígenas ao cristianismo em troca de proteção.',
-              'aliança militar contra os invasores franceses e holandeses.'
+              "utilização da mão de obra indígena para a agricultura de exportação.",
+              "captura de indígenas para serem vendidos como escravos na Europa.",
+              "troca de produtos europeus por pau-brasil extraído pelos indígenas.",
+              "conversão dos indígenas ao cristianismo em troca de proteção.",
+              "aliança militar contra os invasores franceses e holandeses.",
             ],
             correta: 2,
-            comentario: 'O escambo era a troca de produtos europeus por pau-brasil extraído pelos indígenas. Não envolvia trabalho forçado ou escravidão neste período.'
-          }
+            comentario:
+              "O escambo era a troca de produtos europeus por pau-brasil extraído pelos indígenas. Não envolvia trabalho forçado ou escravidão neste período.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'O período compreendido entre 1500 e 1530 é conhecido como pré-colonial porque:',
+            enunciado:
+              "O período compreendido entre 1500 e 1530 é conhecido como pré-colonial porque:",
             alternativas: [
-              'os portugueses não tinham conhecimento da existência do território.',
-              'não houve tentativas de exploração econômica do território.',
-              'os franceses ocuparam militarmente a região.',
-              'não houve colonização efetiva, apenas exploração do pau-brasil.',
-              'os indígenas resistiram a qualquer contato com os europeus.'
+              "os portugueses não tinham conhecimento da existência do território.",
+              "não houve tentativas de exploração econômica do território.",
+              "os franceses ocuparam militarmente a região.",
+              "não houve colonização efetiva, apenas exploração do pau-brasil.",
+              "os indígenas resistiram a qualquer contato com os europeus.",
             ],
-            correta: 3
-          }
-        ]
+            correta: 3,
+          },
+        ],
       },
       {
-        id: '1-3',
-        slug: 'administracao-colonial',
-        titulo: 'Administração Colonial',
+        id: "1-3",
+        slug: "administracao-colonial",
+        titulo: "Administração Colonial",
         conteudo: `
 ## O Sistema de Capitanias Hereditárias (1534)
 
@@ -247,39 +266,43 @@ A relação entre portugueses e indígenas foi marcada pelo escambo comercial:
 | Autoridade | Donatário | Governador |
 | Nomeação | Hereditária | Real |
         `,
-        dicaEnem: 'Compare sempre os dois sistemas administrativos: Capitanias Hereditárias (descentralizado, privatista) e Governo Geral (centralizado, real). Entenda as motivações de cada um.',
+        dicaEnem:
+          "Compare sempre os dois sistemas administrativos: Capitanias Hereditárias (descentralizado, privatista) e Governo Geral (centralizado, real). Entenda as motivações de cada um.",
         questoes: [
           {
-            enunciado: 'Em 1534, o rei de Portugal D. João III dividiu o território brasileiro em quinze partes, chamadas capitanias hereditárias. Essa divisão tinha como principal objetivo:',
+            enunciado:
+              "Em 1534, o rei de Portugal D. João III dividiu o território brasileiro em quinze partes, chamadas capitanias hereditárias. Essa divisão tinha como principal objetivo:",
             alternativas: [
-              'promover a independência do Brasil em relação a Portugal.',
-              'democratizar o acesso à terra para todos os colonos.',
-              'ocupar e defender o território com menores custos para a Coroa.',
-              'estimular a imigração de funcionários reais para a colônia.',
-              'criar um sistema federativo de governo na América portuguesa.'
+              "promover a independência do Brasil em relação a Portugal.",
+              "democratizar o acesso à terra para todos os colonos.",
+              "ocupar e defender o território com menores custos para a Coroa.",
+              "estimular a imigração de funcionários reais para a colônia.",
+              "criar um sistema federativo de governo na América portuguesa.",
             ],
             correta: 2,
-            comentario: 'O sistema permitia transferir os custos de ocupação para os donatários, já que a Coroa não dispunha de recursos para financiar a colonização.'
-          }
+            comentario:
+              "O sistema permitia transferir os custos de ocupação para os donatários, já que a Coroa não dispunha de recursos para financiar a colonização.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A criação do Governo Geral em 1548 representou uma mudança na política administrativa portuguesa para o Brasil, pois:',
+            enunciado:
+              "A criação do Governo Geral em 1548 representou uma mudança na política administrativa portuguesa para o Brasil, pois:",
             alternativas: [
-              'extinguiu todas as capitanias hereditárias existentes.',
-              'centralizou a administração colonial sob autoridade real.',
-              'transferiu a capital de Salvador para o Rio de Janeiro.',
-              'concedeu independência administrativa às capitanias.',
-              'eliminou a participação dos colonos na administração local.'
+              "extinguiu todas as capitanias hereditárias existentes.",
+              "centralizou a administração colonial sob autoridade real.",
+              "transferiu a capital de Salvador para o Rio de Janeiro.",
+              "concedeu independência administrativa às capitanias.",
+              "eliminou a participação dos colonos na administração local.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-4',
-        slug: 'economia-aucareira',
-        titulo: 'Economia Açucareira',
+        id: "1-4",
+        slug: "economia-aucareira",
+        titulo: "Economia Açucareira",
         conteudo: `
 ## O Açúcar no Contexto Mundial
 
@@ -325,39 +348,43 @@ A partir do século XVII:
 - Holandeses levaram tecnologia para o Caribe
 - Estagnação econômica do Nordeste
         `,
-        dicaEnem: 'A economia açucareira é tema frequente. Foque em: estrutura do engenho, hierarquia social, pacto colonial e o declínio com a concorrência antilhana.',
+        dicaEnem:
+          "A economia açucareira é tema frequente. Foque em: estrutura do engenho, hierarquia social, pacto colonial e o declínio com a concorrência antilhana.",
         questoes: [
           {
-            enunciado: 'O engenho de açúcar no Brasil colonial era uma unidade de produção que combinava agricultura e transformação artesanal. Sobre a estrutura do engenho, é correto afirmar que:',
+            enunciado:
+              "O engenho de açúcar no Brasil colonial era uma unidade de produção que combinava agricultura e transformação artesanal. Sobre a estrutura do engenho, é correto afirmar que:",
             alternativas: [
-              'era baseado na pequena propriedade familiar e na mão de obra livre.',
-              'constituía um complexo agroindustrial que dependia de grande investimento de capital.',
-              'dedicava-se à produção diversificada de alimentos para o mercado interno.',
-              'empregava exclusivamente trabalhadores assalariados europeus.',
-              'estava voltado para o abastecimento do mercado colonial.'
+              "era baseado na pequena propriedade familiar e na mão de obra livre.",
+              "constituía um complexo agroindustrial que dependia de grande investimento de capital.",
+              "dedicava-se à produção diversificada de alimentos para o mercado interno.",
+              "empregava exclusivamente trabalhadores assalariados europeus.",
+              "estava voltado para o abastecimento do mercado colonial.",
             ],
             correta: 1,
-            comentario: 'O engenho exigia investimentos significativos em terras, equipamentos, mão de obra escravizada e infraestrutura.'
-          }
+            comentario:
+              "O engenho exigia investimentos significativos em terras, equipamentos, mão de obra escravizada e infraestrutura.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A economia açucareira implantada no Brasil colonial caracterizou-se por:',
+            enunciado:
+              "A economia açucareira implantada no Brasil colonial caracterizou-se por:",
             alternativas: [
-              'pequenas propriedades voltadas para a subsistência.',
-              'mão de obra livre e assalariada de imigrantes europeus.',
-              'monocultura exportadora baseada na grande propriedade.',
-              'diversificação produtiva para o mercado interno.',
-              'produção artesanal independente do capital mercantil.'
+              "pequenas propriedades voltadas para a subsistência.",
+              "mão de obra livre e assalariada de imigrantes europeus.",
+              "monocultura exportadora baseada na grande propriedade.",
+              "diversificação produtiva para o mercado interno.",
+              "produção artesanal independente do capital mercantil.",
             ],
-            correta: 2
-          }
-        ]
+            correta: 2,
+          },
+        ],
       },
       {
-        id: '1-5',
-        slug: 'mineracao',
-        titulo: 'Mineração e Interiorização',
+        id: "1-5",
+        slug: "mineracao",
+        titulo: "Mineração e Interiorização",
         conteudo: `
 ## A Descoberta do Ouro
 
@@ -399,39 +426,42 @@ A partir do século XVII:
 - Denunciado antes de se concretizar
 - Tiradentes executado em 1792
         `,
-        dicaEnem: 'O ciclo do ouro trouxe transformações espaciais importantes: interiorização, urbanização e mudança do eixo econômico. A Inconfidência Mineira é tema frequente.',
+        dicaEnem:
+          "O ciclo do ouro trouxe transformações espaciais importantes: interiorização, urbanização e mudança do eixo econômico. A Inconfidência Mineira é tema frequente.",
         questoes: [
           {
-            enunciado: 'O ciclo do ouro, no século XVIII, provocou profundas transformações na colônia brasileira, entre as quais se destaca:',
+            enunciado:
+              "O ciclo do ouro, no século XVIII, provocou profundas transformações na colônia brasileira, entre as quais se destaca:",
             alternativas: [
-              'a manutenção do eixo econômico no Nordeste açucareiro.',
-              'o aumento da urbanização e a interiorização do povoamento.',
-              'o declínio do tráfico negreiro e a abolição da escravidão.',
-              'a redução do controle fiscal por parte da metrópole.',
-              'o fim dos conflitos entre paulistas e emboabas.'
+              "a manutenção do eixo econômico no Nordeste açucareiro.",
+              "o aumento da urbanização e a interiorização do povoamento.",
+              "o declínio do tráfico negreiro e a abolição da escravidão.",
+              "a redução do controle fiscal por parte da metrópole.",
+              "o fim dos conflitos entre paulistas e emboabas.",
             ],
             correta: 1,
-            comentario: 'O ciclo do ouro promoveu a interiorização do povoamento e estimulou a urbanização com cidades como Vila Rica.'
-          }
+            comentario:
+              "O ciclo do ouro promoveu a interiorização do povoamento e estimulou a urbanização com cidades como Vila Rica.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Inconfidência Mineira (1789) foi um movimento que:',
+            enunciado: "A Inconfidência Mineira (1789) foi um movimento que:",
             alternativas: [
-              'pretendia a independência do Brasil e a manutenção da escravidão.',
-              'foi liderado exclusivamente por membros da elite intelectual mineira.',
-              'fracassou após ser denunciado às autoridades portuguesas.',
-              'obteve apoio popular generalizado em Minas Gerais.',
-              'resultou na execução de todos os conspiradores.'
+              "pretendia a independência do Brasil e a manutenção da escravidão.",
+              "foi liderado exclusivamente por membros da elite intelectual mineira.",
+              "fracassou após ser denunciado às autoridades portuguesas.",
+              "obteve apoio popular generalizado em Minas Gerais.",
+              "resultou na execução de todos os conspiradores.",
             ],
-            correta: 2
-          }
-        ]
+            correta: 2,
+          },
+        ],
       },
       {
-        id: '1-6',
-        slug: 'escravidao',
-        titulo: 'Escravidão no Brasil',
+        id: "1-6",
+        slug: "escravidao",
+        titulo: "Escravidão no Brasil",
         conteudo: `
 ## O Tráfico Negreiro
 
@@ -465,39 +495,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Destruição em 1694
 - Zumbi: líder mais famoso
         `,
-        dicaEnem: 'A escravidão é um dos temas mais cobrados. Foque em: tráfico negreiro, resistência (quilombos), e a presença africana na formação cultural brasileira.',
+        dicaEnem:
+          "A escravidão é um dos temas mais cobrados. Foque em: tráfico negreiro, resistência (quilombos), e a presença africana na formação cultural brasileira.",
         questoes: [
           {
-            enunciado: 'O Quilombo dos Palmares, existente no atual estado de Alagoas durante o século XVII, foi:',
+            enunciado:
+              "O Quilombo dos Palmares, existente no atual estado de Alagoas durante o século XVII, foi:",
             alternativas: [
-              'uma comunidade de indígenas que resistiu à colonização portuguesa.',
-              'um reduto de escravos fugidos que resistiu por décadas à dominação colonial.',
-              'uma vila de portugueses que se rebelou contra a Coroa.',
-              'um entreposto comercial de franceses no litoral nordestino.',
-              'uma missão jesuítica que catequizava indígenas.'
+              "uma comunidade de indígenas que resistiu à colonização portuguesa.",
+              "um reduto de escravos fugidos que resistiu por décadas à dominação colonial.",
+              "uma vila de portugueses que se rebelou contra a Coroa.",
+              "um entreposto comercial de franceses no litoral nordestino.",
+              "uma missão jesuítica que catequizava indígenas.",
             ],
             correta: 1,
-            comentario: 'Palmares foi o maior quilombo do Brasil, formado por escravos fugidos que resistiu por quase todo o século XVII.'
-          }
+            comentario:
+              "Palmares foi o maior quilombo do Brasil, formado por escravos fugidos que resistiu por quase todo o século XVII.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'O tráfico negreiro para o Brasil:',
+            enunciado: "O tráfico negreiro para o Brasil:",
             alternativas: [
-              'trouxe cerca de 500 mil africanos ao longo de três séculos.',
-              'foi responsável pela vinda de cerca de 4,8 milhões de africanos.',
-              'foi proibido desde o início da colonização.',
-              'envolvia apenas portugueses e brasileiros.',
-              'decorreu da escassez de mão de obra indígena.'
+              "trouxe cerca de 500 mil africanos ao longo de três séculos.",
+              "foi responsável pela vinda de cerca de 4,8 milhões de africanos.",
+              "foi proibido desde o início da colonização.",
+              "envolvia apenas portugueses e brasileiros.",
+              "decorreu da escassez de mão de obra indígena.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-7',
-        slug: 'primeiro-reinado',
-        titulo: 'Primeiro Reinado',
+        id: "1-7",
+        slug: "primeiro-reinado",
+        titulo: "Primeiro Reinado",
         conteudo: `
 ## A Independência do Brasil
 
@@ -526,39 +559,43 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Pressões políticas e militares
 - Herdeiro com apenas 5 anos
         `,
-        dicaEnem: 'A Independência e o Primeiro Reinado são temas importantes. Entenda o papel do Poder Moderador e a Confederação do Equador como movimento de resistência.',
+        dicaEnem:
+          "A Independência e o Primeiro Reinado são temas importantes. Entenda o papel do Poder Moderador e a Confederação do Equador como movimento de resistência.",
         questoes: [
           {
-            enunciado: 'A Constituição de 1824, outorgada por D. Pedro I, estabeleceu o Poder Moderador, que:',
+            enunciado:
+              "A Constituição de 1824, outorgada por D. Pedro I, estabeleceu o Poder Moderador, que:",
             alternativas: [
-              'garantia a separação entre Igreja e Estado.',
-              'permitia ao imperador intervir nos demais poderes.',
-              'estabelecia o voto universal e secreto.',
-              'criava um sistema parlamentarista puro.',
-              'garantia a liberdade de religião.'
+              "garantia a separação entre Igreja e Estado.",
+              "permitia ao imperador intervir nos demais poderes.",
+              "estabelecia o voto universal e secreto.",
+              "criava um sistema parlamentarista puro.",
+              "garantia a liberdade de religião.",
             ],
             correta: 1,
-            comentario: 'O Poder Moderador permitia ao imperador intervir nos demais poderes, concentrando autoridade na figura do monarca.'
-          }
+            comentario:
+              "O Poder Moderador permitia ao imperador intervir nos demais poderes, concentrando autoridade na figura do monarca.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Independência do Brasil, proclamada em 1822, caracterizou-se por:',
+            enunciado:
+              "A Independência do Brasil, proclamada em 1822, caracterizou-se por:",
             alternativas: [
-              'ter sido um processo revolucionário com participação popular.',
-              'manter a unidade territorial e a elite agrária no poder.',
-              'abolir imediatamente a escravidão.',
-              'instalar um regime republicano.',
-              'contar com apoio unânime das províncias.'
+              "ter sido um processo revolucionário com participação popular.",
+              "manter a unidade territorial e a elite agrária no poder.",
+              "abolir imediatamente a escravidão.",
+              "instalar um regime republicano.",
+              "contar com apoio unânime das províncias.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-8',
-        slug: 'periodo-regencial',
-        titulo: 'Período Regencial',
+        id: "1-8",
+        slug: "periodo-regencial",
+        titulo: "Período Regencial",
         conteudo: `
 ## Contexto
 
@@ -602,39 +639,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Golpe da Maioridade
 - Fim do período regencial
         `,
-        dicaEnem: 'O Período Regencial foi marcado por revoltas provinciais. Entenda as características de cada movimento e a relação com a centralização/descentralização.',
+        dicaEnem:
+          "O Período Regencial foi marcado por revoltas provinciais. Entenda as características de cada movimento e a relação com a centralização/descentralização.",
         questoes: [
           {
-            enunciado: 'O Período Regencial (1831-1840) foi marcado por diversas revoltas provinciais, entre as quais se destaca a Cabanagem, ocorrida no:',
+            enunciado:
+              "O Período Regencial (1831-1840) foi marcado por diversas revoltas provinciais, entre as quais se destaca a Cabanagem, ocorrida no:",
             alternativas: [
-              'Rio Grande do Sul, reivindicando maior autonomia fiscal.',
-              'Maranhão, contra os grandes proprietários de terras.',
-              'Pará, com participação popular significativa.',
-              'Bahia, liderada por Francisco Sabino.',
-              'Minas Gerais, contra a cobrança de impostos.'
+              "Rio Grande do Sul, reivindicando maior autonomia fiscal.",
+              "Maranhão, contra os grandes proprietários de terras.",
+              "Pará, com participação popular significativa.",
+              "Bahia, liderada por Francisco Sabino.",
+              "Minas Gerais, contra a cobrança de impostos.",
             ],
             correta: 2,
-            comentario: 'A Cabanagem no Pará foi um movimento com grande participação popular, chegando os cabanos a tomar o poder provincial.'
-          }
+            comentario:
+              "A Cabanagem no Pará foi um movimento com grande participação popular, chegando os cabanos a tomar o poder provincial.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Revolução Farroupilha (1835-1845) foi:',
+            enunciado: "A Revolução Farroupilha (1835-1845) foi:",
             alternativas: [
-              'uma revolta de escravos contra a monarquia.',
-              'o movimento regencial de maior duração.',
-              'um conflito entre portugueses e brasileiros.',
-              'uma guerra contra a Argentina.',
-              'uma rebelião de militares no Rio de Janeiro.'
+              "uma revolta de escravos contra a monarquia.",
+              "o movimento regencial de maior duração.",
+              "um conflito entre portugueses e brasileiros.",
+              "uma guerra contra a Argentina.",
+              "uma rebelião de militares no Rio de Janeiro.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-9',
-        slug: 'segundo-reinado',
-        titulo: 'Segundo Reinado',
+        id: "1-9",
+        slug: "segundo-reinado",
+        titulo: "Segundo Reinado",
         conteudo: `
 ## Estabilidade Política
 
@@ -668,39 +708,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Militares insatisfeitos com tratamento
 - Antecedente da Proclamação da República
         `,
-        dicaEnem: 'O Segundo Reinado é tema frequente. Foque na abolição gradual, na Guerra do Paraguai e na transição para a República.',
+        dicaEnem:
+          "O Segundo Reinado é tema frequente. Foque na abolição gradual, na Guerra do Paraguai e na transição para a República.",
         questoes: [
           {
-            enunciado: 'A Lei Áurea, assinada pela Princesa Isabel em 13 de maio de 1888, representou:',
+            enunciado:
+              "A Lei Áurea, assinada pela Princesa Isabel em 13 de maio de 1888, representou:",
             alternativas: [
-              'o início do processo abolicionista no Brasil.',
-              'a abolição gradual da escravidão ao longo de dez anos.',
-              'o fim oficial da escravidão no Brasil sem indenização aos proprietários.',
-              'a concessão de terras aos escravos libertos.',
-              'a implementação de um plano de integração dos ex-escravos ao mercado de trabalho.'
+              "o início do processo abolicionista no Brasil.",
+              "a abolição gradual da escravidão ao longo de dez anos.",
+              "o fim oficial da escravidão no Brasil sem indenização aos proprietários.",
+              "a concessão de terras aos escravos libertos.",
+              "a implementação de um plano de integração dos ex-escravos ao mercado de trabalho.",
             ],
             correta: 2,
-            comentario: 'A Lei Áurea aboliu totalmente a escravidão sem qualquer indenização aos proprietários e sem medidas de integração dos libertos.'
-          }
+            comentario:
+              "A Lei Áurea aboliu totalmente a escravidão sem qualquer indenização aos proprietários e sem medidas de integração dos libertos.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Guerra do Paraguai (1864-1870):',
+            enunciado: "A Guerra do Paraguai (1864-1870):",
             alternativas: [
-              'envolveu apenas Brasil e Paraguai.',
-              'foi vencida pelo Paraguai.',
-              'contou com a Tríplice Aliança contra o Paraguai.',
-              'não afetou a política interna brasileira.',
-              'resultou na anexação do Paraguai pelo Brasil.'
+              "envolveu apenas Brasil e Paraguai.",
+              "foi vencida pelo Paraguai.",
+              "contou com a Tríplice Aliança contra o Paraguai.",
+              "não afetou a política interna brasileira.",
+              "resultou na anexação do Paraguai pelo Brasil.",
             ],
-            correta: 2
-          }
-        ]
+            correta: 2,
+          },
+        ],
       },
       {
-        id: '1-10',
-        slug: 'proclamacao-republica',
-        titulo: 'Proclamação da República',
+        id: "1-10",
+        slug: "proclamacao-republica",
+        titulo: "Proclamação da República",
         conteudo: `
 ## O Golpe de 1889
 
@@ -729,39 +772,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Nova bandeira nacional
 - Mudança de símbolos nacionais
         `,
-        dicaEnem: 'A Proclamação da República foi um golpe militar, não um movimento popular. Entenda as características da República da Espada e da Constituição de 1891.',
+        dicaEnem:
+          "A Proclamação da República foi um golpe militar, não um movimento popular. Entenda as características da República da Espada e da Constituição de 1891.",
         questoes: [
           {
-            enunciado: 'A Proclamação da República, em 15 de novembro de 1889, caracterizou-se por:',
+            enunciado:
+              "A Proclamação da República, em 15 de novembro de 1889, caracterizou-se por:",
             alternativas: [
-              'ter sido um movimento popular com ampla participação de trabalhadores.',
-              'resultar de um golpe militar liderado pelo Marechal Deodoro da Fonseca.',
-              'instalar imediatamente um regime democrático com voto universal.',
-              'contar com o apoio ativo da família imperial brasileira.',
-              'promover profundas reformas sociais logo nos primeiros dias.'
+              "ter sido um movimento popular com ampla participação de trabalhadores.",
+              "resultar de um golpe militar liderado pelo Marechal Deodoro da Fonseca.",
+              "instalar imediatamente um regime democrático com voto universal.",
+              "contar com o apoio ativo da família imperial brasileira.",
+              "promover profundas reformas sociais logo nos primeiros dias.",
             ],
             correta: 1,
-            comentario: 'A República foi proclamada por um golpe militar liderado por Deodoro da Fonseca, sem participação popular significativa.'
-          }
+            comentario:
+              "A República foi proclamada por um golpe militar liderado por Deodoro da Fonseca, sem participação popular significativa.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Constituição de 1891 estabeleceu:',
+            enunciado: "A Constituição de 1891 estabeleceu:",
             alternativas: [
-              'o voto universal e secreto para todos os cidadãos.',
-              'o parlamentarismo como sistema de governo.',
-              'a forma federativa de Estado.',
-              'a religião católica como oficial do Estado.',
-              'o poder hereditário através do senado.'
+              "o voto universal e secreto para todos os cidadãos.",
+              "o parlamentarismo como sistema de governo.",
+              "a forma federativa de Estado.",
+              "a religião católica como oficial do Estado.",
+              "o poder hereditário através do senado.",
             ],
-            correta: 2
-          }
-        ]
+            correta: 2,
+          },
+        ],
       },
       {
-        id: '1-11',
-        slug: 'republica-velha',
-        titulo: 'República Velha',
+        id: "1-11",
+        slug: "republica-velha",
+        titulo: "República Velha",
         conteudo: `
 ## Política do Café com Leite
 
@@ -799,39 +845,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Quebra da hegemonia oligárquica
 - Revolução de 1930
         `,
-        dicaEnem: 'A República Velha é tema muito cobrado. Entenda: coronelismo, voto de cabresto, política do café com leite e o movimento tenentista.',
+        dicaEnem:
+          "A República Velha é tema muito cobrado. Entenda: coronelismo, voto de cabresto, política do café com leite e o movimento tenentista.",
         questoes: [
           {
-            enunciado: 'Durante a República Velha (1889-1930), o controle político era exercido através do coronelismo, que consistia:',
+            enunciado:
+              "Durante a República Velha (1889-1930), o controle político era exercido através do coronelismo, que consistia:",
             alternativas: [
-              'no poder dos militares sobre o governo civil.',
-              'no domínio dos grandes industriais sobre a política nacional.',
-              'no controle dos chefes locais sobre os eleitores através de favores.',
-              'na influência da Igreja Católica sobre as eleições.',
-              'no poder dos sindicatos sobre os trabalhadores rurais.'
+              "no poder dos militares sobre o governo civil.",
+              "no domínio dos grandes industriais sobre a política nacional.",
+              "no controle dos chefes locais sobre os eleitores através de favores.",
+              "na influência da Igreja Católica sobre as eleições.",
+              "no poder dos sindicatos sobre os trabalhadores rurais.",
             ],
             correta: 2,
-            comentario: 'O coronelismo era o controle exercido pelos chefes locais (coronéis) sobre os eleitores, através de favores e coerção.'
-          }
+            comentario:
+              "O coronelismo era o controle exercido pelos chefes locais (coronéis) sobre os eleitores, através de favores e coerção.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Revolução de 1930 foi desencadeada por:',
+            enunciado: "A Revolução de 1930 foi desencadeada por:",
             alternativas: [
-              'uma insatisfação popular com a monarquia.',
-              'uma aliança entre oligarquias dissidentes e tenentes.',
-              'um golpe militar isolado sem apoio civil.',
-              'uma intervenção estrangeira.',
-              'uma greve geral dos trabalhadores industriais.'
+              "uma insatisfação popular com a monarquia.",
+              "uma aliança entre oligarquias dissidentes e tenentes.",
+              "um golpe militar isolado sem apoio civil.",
+              "uma intervenção estrangeira.",
+              "uma greve geral dos trabalhadores industriais.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-12',
-        slug: 'era-vargas',
-        titulo: 'Era Vargas (1930-1945)',
+        id: "1-12",
+        slug: "era-vargas",
+        titulo: "Era Vargas (1930-1945)",
         conteudo: `
 ## Revolução de 1930
 
@@ -854,7 +903,7 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Censura e repressão
 
 ### Realizações
-- **Industrialização:** CSN, Vale do Rio Doce, Petrobras
+- **Industrialização:** CSN e Vale do Rio Doce
 - **CLT:** Consolidação das Leis do Trabalho
 - **Infraestrutura:** estradas, usinas
 
@@ -864,39 +913,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Vargas deposto em 1945
 - Início do período democrático
         `,
-        dicaEnem: 'A Era Vargas é um dos temas mais cobrados. Foque nas características do Estado Novo, na industrialização e na CLT.',
+        dicaEnem:
+          "A Era Vargas é um dos temas mais cobrados. Foque nas características do Estado Novo, na industrialização e na CLT.",
         questoes: [
           {
-            enunciado: 'O Estado Novo (1937-1945), governo ditatorial de Getúlio Vargas, caracterizou-se por:',
+            enunciado:
+              "O Estado Novo (1937-1945), governo ditatorial de Getúlio Vargas, caracterizou-se por:",
             alternativas: [
-              'liberalismo econômico e descentralização política.',
-              'nacionalismo econômico e repressão política.',
-              'governo parlamentarista e liberdade de imprensa.',
-              'aliança com países do Eixo durante a Segunda Guerra.',
-              'abolição dos direitos trabalhistas conquistados anteriormente.'
+              "liberalismo econômico e descentralização política.",
+              "nacionalismo econômico e repressão política.",
+              "governo parlamentarista e liberdade de imprensa.",
+              "aliança com países do Eixo durante a Segunda Guerra.",
+              "abolição dos direitos trabalhistas conquistados anteriormente.",
             ],
             correta: 1,
-            comentario: 'O Estado Novo foi uma ditadura com nacionalismo econômico, industrialização via estatais e repressão política com censura.'
-          }
+            comentario:
+              "O Estado Novo foi uma ditadura com nacionalismo econômico, industrialização via estatais e repressão política com censura.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Consolidação das Leis do Trabalho (CLT), de 1943:',
+            enunciado: "A Consolidação das Leis do Trabalho (CLT), de 1943:",
             alternativas: [
-              'extinguiu todos os direitos trabalhistas existentes.',
-              'unificou a legislação trabalhista brasileira.',
-              'foi criada durante o governo de Juscelino Kubitschek.',
-              'estabeleceu o trabalho escravo.',
-              'foi rejeitada pelos trabalhadores.'
+              "extinguiu todos os direitos trabalhistas existentes.",
+              "unificou a legislação trabalhista brasileira.",
+              "foi criada durante o governo de Juscelino Kubitschek.",
+              "estabeleceu o trabalho escravo.",
+              "foi rejeitada pelos trabalhadores.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-13',
-        slug: 'republica-populista',
-        titulo: 'República Populista (1945-1964)',
+        id: "1-13",
+        slug: "republica-populista",
+        titulo: "República Populista (1945-1964)",
         conteudo: `
 ## Contexto
 
@@ -928,39 +980,42 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Reformas de base
 - Golpe militar em 1964
         `,
-        dicaEnem: 'O período populista é cobrado com frequência. Entenda as Reformas de Base, a construção de Brasília e o contexto do golpe de 1964.',
+        dicaEnem:
+          "O período populista é cobrado com frequência. Entenda as Reformas de Base, a construção de Brasília e o contexto do golpe de 1964.",
         questoes: [
           {
-            enunciado: 'O governo de Juscelino Kubitschek (1956-1961) caracterizou-se pelo slogan "50 anos em 5", que representava:',
+            enunciado:
+              'O governo de Juscelino Kubitschek (1956-1961) caracterizou-se pelo slogan "50 anos em 5", que representava:',
             alternativas: [
-              'um projeto de reforma agrária em larga escala.',
-              'um plano de industrialização acelerada do país.',
-              'uma campanha de alfabetização de adultos.',
-              'um programa de integração dos ex-escravos.',
-              'uma política de isolamento internacional.'
+              "um projeto de reforma agrária em larga escala.",
+              "um plano de industrialização acelerada do país.",
+              "uma campanha de alfabetização de adultos.",
+              "um programa de integração dos ex-escravos.",
+              "uma política de isolamento internacional.",
             ],
             correta: 1,
-            comentario: 'O slogan "50 anos em 5" representava o projeto de industrialização acelerada, incluindo a construção de Brasília.'
-          }
+            comentario:
+              'O slogan "50 anos em 5" representava o projeto de industrialização acelerada, incluindo a construção de Brasília.',
+          },
         ],
         exercicios: [
           {
-            enunciado: 'João Goulart foi deposto em 1964 por:',
+            enunciado: "João Goulart foi deposto em 1964 por:",
             alternativas: [
-              'uma revolta popular.',
-              'um golpe militar apoiado por setores conservadores.',
-              'uma eleição fraudada.',
-              'um impeachment no Congresso.',
-              'uma intervenção estrangeira.'
+              "uma revolta popular.",
+              "um golpe militar apoiado por setores conservadores.",
+              "uma eleição fraudada.",
+              "um impeachment no Congresso.",
+              "uma intervenção estrangeira.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-14',
-        slug: 'ditadura-militar',
-        titulo: 'Ditadura Militar (1964-1985)',
+        id: "1-14",
+        slug: "ditadura-militar",
+        titulo: "Ditadura Militar (1964-1985)",
         conteudo: `
 ## O Golpe de 1964
 
@@ -999,51 +1054,54 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Oposição política
 - Movimentos sociais
         `,
-        dicaEnem: 'A Ditadura Militar é tema muito cobrado. Entenda: AI-5, anos de chumbo, milagre econômico, abertura política e Lei da Anistia.',
+        dicaEnem:
+          "A Ditadura Militar é tema muito cobrado. Entenda: AI-5, anos de chumbo, milagre econômico, abertura política e Lei da Anistia.",
         questoes: [
           {
-            enunciado: 'O Ato Institucional número 5 (AI-5), decretado em 1968 durante o regime militar, estabeleceu:',
+            enunciado:
+              "O Ato Institucional número 5 (AI-5), decretado em 1968 durante o regime militar, estabeleceu:",
             alternativas: [
-              'a redemocratização completa do país.',
-              'o fechamento do Congresso Nacional e a suspensão de garantias constitucionais.',
-              'a eleição direta para presidente.',
-              'a anistia para todos os presos políticos.',
-              'o fim da censura aos meios de comunicação.'
+              "a redemocratização completa do país.",
+              "o fechamento do Congresso Nacional e a suspensão de garantias constitucionais.",
+              "a eleição direta para presidente.",
+              "a anistia para todos os presos políticos.",
+              "o fim da censura aos meios de comunicação.",
             ],
             correta: 1,
-            comentario: 'O AI-5 foi o mais repressivo dos Atos Institucionais, fechando o Congresso e suspendendo garantias constitucionais.'
-          }
+            comentario:
+              "O AI-5 foi o mais repressivo dos Atos Institucionais, fechando o Congresso e suspendendo garantias constitucionais.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A Campanha das Diretas Já, em 1984:',
+            enunciado: "A Campanha das Diretas Já, em 1984:",
             alternativas: [
-              'conseguiu aprovar eleições diretas para presidente em 1984.',
-              'mobilizou milhões de brasileiros exigindo eleições diretas.',
-              'foi organizada pelo governo militar.',
-              'não teve participação popular significativa.',
-              'resultou na volta da monarquia.'
+              "conseguiu aprovar eleições diretas para presidente em 1984.",
+              "mobilizou milhões de brasileiros exigindo eleições diretas.",
+              "foi organizada pelo governo militar.",
+              "não teve participação popular significativa.",
+              "resultou na volta da monarquia.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '1-15',
-        slug: 'brasil-contemporaneo',
-        titulo: 'Brasil Contemporâneo',
+        id: "1-15",
+        slug: "brasil-contemporaneo",
+        titulo: "Brasil Contemporâneo",
         conteudo: `
 ## Redemocratização
 
-- Eleição indireta de Tancredo Neves (1984)
+- Eleição indireta de Tancredo Neves (1985)
 - Morte de Tancredo
 - José Sarney assume (1985-1990)
 
 ## Constituição de 1988
 
 - "Constituição Cidadã"
-- Direitos e garantias individuais
-- SUS, FGTS, 13º salário
+- Ampliação de direitos e garantias individuais
+- Criação do SUS e proteção de direitos sociais
 - Voto aos analfabetos
 
 ## Planos Econômicos
@@ -1073,49 +1131,53 @@ O tráfico negreiro foi o maior deslocamento forçado de pessoas da história.
 - Protestos de 2013
 - Impeachment em 2016
         `,
-        dicaEnem: 'O Brasil contemporâneo é cobrado em questões sobre redemocratização, Constituição de 1988, planos econômicos e desafios atuais.',
+        dicaEnem:
+          "O Brasil contemporâneo é cobrado em questões sobre redemocratização, Constituição de 1988, planos econômicos e desafios atuais.",
         questoes: [
           {
-            enunciado: 'A Constituição brasileira de 1988, conhecida como "Constituição Cidadã", estabeleceu:',
+            enunciado:
+              'A Constituição brasileira de 1988, conhecida como "Constituição Cidadã", estabeleceu:',
             alternativas: [
-              'o voto censitário para cargos executivos.',
-              'o Sistema Único de Saúde (SUS) e diversos direitos sociais.',
-              'o regime monárquico de governo.',
-              'a censura prévia aos meios de comunicação.',
-              'o fim das eleições diretas para presidente.'
+              "o voto censitário para cargos executivos.",
+              "o Sistema Único de Saúde (SUS) e diversos direitos sociais.",
+              "o regime monárquico de governo.",
+              "a censura prévia aos meios de comunicação.",
+              "o fim das eleições diretas para presidente.",
             ],
             correta: 1,
-            comentario: 'A Constituição de 1988 garantiu direitos como o SUS, além de ampliar direitos sociais e individuais.'
-          }
+            comentario:
+              "A Constituição de 1988 garantiu direitos como o SUS, além de ampliar direitos sociais e individuais.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'O Plano Real, implementado em 1994:',
+            enunciado: "O Plano Real, implementado em 1994:",
             alternativas: [
-              'confiscou as poupanças dos brasileiros.',
-              'estabilizou a moeda e controlou a inflação.',
-              'aumentou a inflação para níveis recordes.',
-              'foi implementado durante o governo Collor.',
-              'introduziu o cruzeiro como nova moeda.'
+              "confiscou as poupanças dos brasileiros.",
+              "estabilizou a moeda e controlou a inflação.",
+              "aumentou a inflação para níveis recordes.",
+              "foi implementado durante o governo Collor.",
+              "introduziu o cruzeiro como nova moeda.",
             ],
-            correta: 1
-          }
-        ]
-      }
-    ]
+            correta: 1,
+          },
+        ],
+      },
+    ],
   },
   {
-    id: '2',
-    slug: 'historia-geral',
-    titulo: 'História Geral',
-    descricao: 'Das primeiras civilizações ao mundo contemporâneo, passando por todas as eras históricas.',
-    icone: '🌍',
-    cor: '#3b82f6',
+    id: "2",
+    slug: "historia-geral",
+    titulo: "História Geral",
+    descricao:
+      "Das primeiras civilizações ao mundo contemporâneo, passando por todas as eras históricas.",
+    icone: "🌍",
+    cor: "#3b82f6",
     aulas: [
       {
-        id: '2-1',
-        slug: 'pre-historia',
-        titulo: 'Pré-História e Revolução Neolítica',
+        id: "2-1",
+        slug: "pre-historia",
+        titulo: "Pré-História e Revolução Neolítica",
         conteudo: `
 ## A Pré-História
 
@@ -1147,39 +1209,42 @@ Transformação fundamental ocorrida há aproximadamente 10.000 anos:
 - Desenvolvimento da propriedade privada
 - Estratificação social
         `,
-        dicaEnem: 'A Revolução Neolítica é tema importante. Entenda a transição de caçador-coletor para agricultor e as consequências do sedentarismo.',
+        dicaEnem:
+          "A Revolução Neolítica é tema importante. Entenda a transição de caçador-coletor para agricultor e as consequências do sedentarismo.",
         questoes: [
           {
-            enunciado: 'A Revolução Neolítica, ocorrida há aproximadamente 10.000 anos, foi marcada por:',
+            enunciado:
+              "A Revolução Neolítica, ocorrida há aproximadamente 10.000 anos, foi marcada por:",
             alternativas: [
-              'pelo desenvolvimento da escrita.',
-              'pela transição para a agricultura e o sedentarismo.',
-              'pela invenção da máquina a vapor.',
-              'pela expansão do Império Romano.',
-              'pelo início das grandes navegações.'
+              "pelo desenvolvimento da escrita.",
+              "pela transição para a agricultura e o sedentarismo.",
+              "pela invenção da máquina a vapor.",
+              "pela expansão do Império Romano.",
+              "pelo início das grandes navegações.",
             ],
             correta: 1,
-            comentario: 'A Revolução Neolítica foi marcada pela transição para a agricultura, pecuária e sedentarismo.'
-          }
+            comentario:
+              "A Revolução Neolítica foi marcada pela transição para a agricultura, pecuária e sedentarismo.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'Durante o Paleolítico, os humanos:',
+            enunciado: "Durante o Paleolítico, os humanos:",
             alternativas: [
-              'viviam em cidades permanentes.',
-              'eram caçadores-coletores nômades.',
-              'praticavam a agricultura em larga escala.',
-              'utilizavam exclusivamente ferramentas de metal.',
-              'conheciam a escrita.'
+              "viviam em cidades permanentes.",
+              "eram caçadores-coletores nômades.",
+              "praticavam a agricultura em larga escala.",
+              "utilizavam exclusivamente ferramentas de metal.",
+              "conheciam a escrita.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '2-2',
-        slug: 'mesopotamia',
-        titulo: 'Mesopotâmia',
+        id: "2-2",
+        slug: "mesopotamia",
+        titulo: "Mesopotâmia",
         conteudo: `
 ## A Terra Entre Rios
 
@@ -1211,39 +1276,42 @@ Transformação fundamental ocorrida há aproximadamente 10.000 anos:
 - Estrada Real
 - Tolerância cultural
         `,
-        dicaEnem: 'A Mesopotâmia é tema importante. Foque na escrita cuneiforme, Código de Hamurabi e organização dos persas.',
+        dicaEnem:
+          "A Mesopotâmia é tema importante. Foque na escrita cuneiforme, Código de Hamurabi e organização dos persas.",
         questoes: [
           {
-            enunciado: 'O Código de Hamurabi, criado na Babilônia, é importante por:',
+            enunciado:
+              "O Código de Hamurabi, criado na Babilônia, é importante por:",
             alternativas: [
-              'estabelecer a democracia na região.',
-              'ser um dos primeiros conjuntos de leis escritas da história.',
-              'abolir a escravidão no território.',
-              'unificar todas as religiões do império.',
-              'criar o primeiro sistema eleitoral.'
+              "estabelecer a democracia na região.",
+              "ser um dos primeiros conjuntos de leis escritas da história.",
+              "abolir a escravidão no território.",
+              "unificar todas as religiões do império.",
+              "criar o primeiro sistema eleitoral.",
             ],
             correta: 1,
-            comentario: 'O Código de Hamurabi é um dos primeiros conjuntos de leis escritas, estabelecendo regras para a sociedade babilônica.'
-          }
+            comentario:
+              "O Código de Hamurabi é um dos primeiros conjuntos de leis escritas, estabelecendo regras para a sociedade babilônica.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'Os sumérios desenvolveram:',
+            enunciado: "Os sumérios desenvolveram:",
             alternativas: [
-              'a democracia ateniense.',
-              'a escrita cuneiforme.',
-              'o alfabeto fenício.',
-              'os hieróglifos egípcios.',
-              'o sistema numérico romano.'
+              "a democracia ateniense.",
+              "a escrita cuneiforme.",
+              "o alfabeto fenício.",
+              "os hieróglifos egípcios.",
+              "o sistema numérico romano.",
             ],
-            correta: 1
-          }
-        ]
+            correta: 1,
+          },
+        ],
       },
       {
-        id: '2-3',
-        slug: 'egito-antigo',
-        titulo: 'Egito Antigo',
+        id: "2-3",
+        slug: "egito-antigo",
+        titulo: "Egito Antigo",
         conteudo: `
 ## A Terra do Nilo
 
@@ -1273,49 +1341,52 @@ Transformação fundamental ocorrida há aproximadamente 10.000 anos:
 - Avanços em medicina e matemática
 - Calendário solar
         `,
-        dicaEnem: 'O Egito Antigo é tema frequente. Entenda a teocracia faraônica, a estrutura social e as realizações culturais.',
+        dicaEnem:
+          "O Egito Antigo é tema frequente. Entenda a teocracia faraônica, a estrutura social e as realizações culturais.",
         questoes: [
           {
-            enunciado: 'No Egito Antigo, o faraó era considerado:',
+            enunciado: "No Egito Antigo, o faraó era considerado:",
             alternativas: [
-              'um representante eleito pelo povo.',
-              'um deus vivo com poder absoluto.',
-              'um general do exército sem poder religioso.',
-              'um sacerdote subordinado aos nobres.',
-              'um comerciante enriquecido.'
+              "um representante eleito pelo povo.",
+              "um deus vivo com poder absoluto.",
+              "um general do exército sem poder religioso.",
+              "um sacerdote subordinado aos nobres.",
+              "um comerciante enriquecido.",
             ],
             correta: 1,
-            comentario: 'O faraó era considerado um deus vivo, concentrando poder político e religioso.'
-          }
+            comentario:
+              "O faraó era considerado um deus vivo, concentrando poder político e religioso.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A escrita egípcia era chamada de:',
+            enunciado: "A escrita egípcia era chamada de:",
             alternativas: [
-              'cuneiforme.',
-              'hieroglífica.',
-              'alfabética.',
-              'ideogramática.',
-              'fenícia.'
+              "cuneiforme.",
+              "hieroglífica.",
+              "alfabética.",
+              "ideogramática.",
+              "fenícia.",
             ],
-            correta: 1
-          }
-        ]
-      }
-    ]
+            correta: 1,
+          },
+        ],
+      },
+    ],
   },
   {
-    id: '3',
-    slug: 'historia-america',
-    titulo: 'História da América',
-    descricao: 'Civilizações pré-colombianas, colonização e independência das Américas.',
-    icone: '🌎',
-    cor: '#f59e0b',
+    id: "3",
+    slug: "historia-america",
+    titulo: "História da América",
+    descricao:
+      "Civilizações pré-colombianas, colonização e independência das Américas.",
+    icone: "🌎",
+    cor: "#f59e0b",
     aulas: [
       {
-        id: '3-1',
-        slug: 'civilizacoes-pre-colombianas',
-        titulo: 'Civilizações Pré-Colombianas',
+        id: "3-1",
+        slug: "civilizacoes-pre-colombianas",
+        titulo: "Civilizações Pré-Colombianas",
         conteudo: `
 ## Os Maias
 
@@ -1342,49 +1413,53 @@ Transformação fundamental ocorrida há aproximadamente 10.000 anos:
 - Quipus para contabilidade
 - Agricultura em terraços
         `,
-        dicaEnem: 'As civilizações pré-colombianas são cobradas em comparação. Entenda as características específicas de cada uma.',
+        dicaEnem:
+          "As civilizações pré-colombianas são cobradas em comparação. Entenda as características específicas de cada uma.",
         questoes: [
           {
-            enunciado: 'Os incas desenvolveram um sistema de comunicação e contabilidade baseado em:',
+            enunciado:
+              "Os incas desenvolveram um sistema de comunicação e contabilidade baseado em:",
             alternativas: [
-              'hieróglifos.',
-              'quipus.',
-              'cuneiforme.',
-              'alfabeto fenício.',
-              'códices.'
+              "hieróglifos.",
+              "quipus.",
+              "cuneiforme.",
+              "alfabeto fenício.",
+              "códices.",
             ],
             correta: 1,
-            comentario: 'Os quipus eram cordéis com nós usados para contabilidade e registro de informações.'
-          }
+            comentario:
+              "Os quipus eram cordéis com nós usados para contabilidade e registro de informações.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'A capital do Império Asteca era:',
+            enunciado: "A capital do Império Asteca era:",
             alternativas: [
-              'Cusco.',
-              'Tenochtitlán.',
-              'Machu Picchu.',
-              'Teotihuacán.',
-              'Chichén Itzá.'
+              "Cusco.",
+              "Tenochtitlán.",
+              "Machu Picchu.",
+              "Teotihuacán.",
+              "Chichén Itzá.",
             ],
-            correta: 1
-          }
-        ]
-      }
-    ]
+            correta: 1,
+          },
+        ],
+      },
+    ],
   },
   {
-    id: '4',
-    slug: 'historia-africa',
-    titulo: 'História da África',
-    descricao: 'Reinos africanos, tráfico negreiro, colonização e África contemporânea.',
-    icone: '🌍',
-    cor: '#8b5cf6',
+    id: "4",
+    slug: "historia-africa",
+    titulo: "História da África",
+    descricao:
+      "Reinos africanos, tráfico negreiro, colonização e África contemporânea.",
+    icone: "🌍",
+    cor: "#8b5cf6",
     aulas: [
       {
-        id: '4-1',
-        slug: 'africa-antiga',
-        titulo: 'África Antiga: Reinos e Impérios',
+        id: "4-1",
+        slug: "africa-antiga",
+        titulo: "África Antiga: Reinos e Impérios",
         conteudo: `
 ## Reinos e Impérios Africanos
 
@@ -1408,48 +1483,188 @@ Transformação fundamental ocorrida há aproximadamente 10.000 anos:
 - Construções em pedra
 - Comércio com árabes e indianos
         `,
-        dicaEnem: 'Os reinos africanos são temas crescentes no ENEM. Conheça os principais impérios e suas características.',
+        dicaEnem:
+          "Os reinos africanos são temas crescentes no ENEM. Conheça os principais impérios e suas características.",
         questoes: [
           {
-            enunciado: 'O Império do Mali, na África Ocidental, teve seu apogeu durante o reinado de:',
+            enunciado:
+              "O Império do Mali, na África Ocidental, teve seu apogeu durante o reinado de:",
             alternativas: [
-              'Shaka Zulu.',
-              'Mansa Musa.',
-              'Haile Selassie.',
-              'Kwame Nkrumah.',
-              'Nelson Mandela.'
+              "Shaka Zulu.",
+              "Mansa Musa.",
+              "Haile Selassie.",
+              "Kwame Nkrumah.",
+              "Nelson Mandela.",
             ],
             correta: 1,
-            comentario: 'Mansa Musa foi o mais famoso rei do Império do Mali, considerado um dos homens mais ricos da história.'
-          }
+            comentario:
+              "Mansa Musa foi o mais famoso rei do Império do Mali, considerado um dos homens mais ricos da história.",
+          },
         ],
         exercicios: [
           {
-            enunciado: 'O Grande Zimbabwe era conhecido por:',
+            enunciado: "O Grande Zimbabwe era conhecido por:",
             alternativas: [
-              'suas pirâmides.',
-              'suas construções em pedra.',
-              'seu exército naval.',
-              'sua indústria automobilística.',
-              'seus arranha-céus.'
+              "suas pirâmides.",
+              "suas construções em pedra.",
+              "seu exército naval.",
+              "sua indústria automobilística.",
+              "seus arranha-céus.",
             ],
-            correta: 1
-          }
-        ]
-      }
-    ]
-  }
+            correta: 1,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
+/**
+ * Narrativas ficcionais de apoio para cada aula. O conteúdo em Markdown fica
+ * em src/content/contos e é convertido em páginas estáticas durante o build.
+ */
+export const narrativas: Record<string, Narrativa> = {
+  "povos-indigenas": {
+    titulo: "A Última Noite de Arariboia",
+    descricao:
+      "Uma narrativa ilustrada sobre a diversidade dos povos indígenas antes de 1500.",
+    tempoLeitura: "8 min de leitura",
+    audio: {
+      src: "/conto-imagens/narracao_conto_completo.wav",
+      duracao: "Narração em português · cerca de 2 min",
+    },
+  },
+  "periodo-pre-colonial": {
+    titulo: "O Primeiro Contato",
+    descricao: "Um conto sobre o Período Pré-Colonial brasileiro.",
+    tempoLeitura: "7 min de leitura",
+  },
+  "administracao-colonial": {
+    titulo: "O Domínio das Terras",
+    descricao:
+      "Uma narrativa sobre as capitanias hereditárias e a administração colonial.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "economia-aucareira": {
+    titulo: "O Ouro Branco",
+    descricao: "Uma narrativa sobre o açúcar e a sociedade colonial.",
+    tempoLeitura: "7 min de leitura",
+  },
+  mineracao: {
+    titulo: "A Febre das Gerais",
+    descricao:
+      "Uma narrativa sobre a mineração e suas transformações no Brasil colonial.",
+    tempoLeitura: "6 min de leitura",
+  },
+  escravidao: {
+    titulo: "As Correntes do Atlântico",
+    descricao:
+      "Uma narrativa para contextualizar a escravidão e as resistências.",
+    tempoLeitura: "7 min de leitura",
+  },
+  "primeiro-reinado": {
+    titulo: "O Grito da Independência",
+    descricao: "Uma narrativa sobre os impasses do Primeiro Reinado.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "periodo-regencial": {
+    titulo: "O Vazio do Trono",
+    descricao:
+      "Uma narrativa sobre os conflitos e revoltas do período regencial.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "segundo-reinado": {
+    titulo: "O Império do Café",
+    descricao: "Uma narrativa sobre o Brasil no Segundo Reinado.",
+    tempoLeitura: "7 min de leitura",
+  },
+  "proclamacao-republica": {
+    titulo: "A Queda do Império",
+    descricao: "Uma narrativa sobre a Proclamação da República.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "republica-velha": {
+    titulo: "O Tempo dos Coronéis",
+    descricao: "Uma narrativa sobre o coronelismo e a República Velha.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "era-vargas": {
+    titulo: "O Pai dos Pobres",
+    descricao: "Uma narrativa sobre a Era Vargas e suas contradições.",
+    tempoLeitura: "7 min de leitura",
+  },
+  "republica-populista": {
+    titulo: "Cinquenta Anos em Cinco",
+    descricao:
+      "Uma narrativa sobre desenvolvimento e democracia entre 1945 e 1964.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "ditadura-militar": {
+    titulo: "Os Anos de Chumbo",
+    descricao: "Uma narrativa sobre repressão, resistência e redemocratização.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "brasil-contemporaneo": {
+    titulo: "A Promessa da Democracia",
+    descricao:
+      "Uma narrativa sobre a redemocratização e os desafios contemporâneos.",
+    tempoLeitura: "6 min de leitura",
+  },
+  "pre-historia": {
+    titulo: "A Primeira Luz",
+    descricao: "Uma narrativa sobre a Pré-História e a Revolução Neolítica.",
+    tempoLeitura: "5 min de leitura",
+  },
+  mesopotamia: {
+    titulo: "Entre Dois Rios",
+    descricao: "Uma narrativa sobre as sociedades da Mesopotâmia.",
+    tempoLeitura: "5 min de leitura",
+  },
+  "egito-antigo": {
+    titulo: "O Presente do Nilo",
+    descricao: "Uma narrativa sobre o Egito Antigo.",
+    tempoLeitura: "5 min de leitura",
+  },
+  "civilizacoes-pre-colombianas": {
+    titulo: "O Império do Sol",
+    descricao: "Uma narrativa sobre as civilizações pré-colombianas.",
+    tempoLeitura: "5 min de leitura",
+  },
+  "africa-antiga": {
+    titulo: "O Ouro de Kush",
+    descricao: "Uma narrativa sobre reinos e impérios africanos.",
+    tempoLeitura: "5 min de leitura",
+  },
+};
+
+export const aulas = modulos.flatMap((modulo) =>
+  modulo.aulas.map((aula) => ({ ...aula, modulo })),
+);
+
 export function getModuloBySlug(slug: string): Modulo | undefined {
-  return modulos.find(m => m.slug === slug);
+  return modulos.find((modulo) => modulo.slug === slug);
 }
 
-export function getAulaBySlug(moduloSlug: string, aulaSlug: string): Aula | undefined {
-  const modulo = getModuloBySlug(moduloSlug);
-  return modulo?.aulas.find(a => a.slug === aulaSlug);
+export function getAulaBySlug(
+  moduloSlug: string,
+  aulaSlug: string,
+): Aula | undefined {
+  return getModuloBySlug(moduloSlug)?.aulas.find(
+    (aula) => aula.slug === aulaSlug,
+  );
+}
+
+export function getNarrativaBySlug(slug: string): Narrativa | undefined {
+  return Object.hasOwn(narrativas, slug) ? narrativas[slug] : undefined;
 }
 
 export function getTotalAulas(): number {
-  return modulos.reduce((acc, m) => acc + m.aulas.length, 0);
+  return aulas.length;
+}
+
+export function getTotalAtividades(): number {
+  return aulas.reduce(
+    (total, aula) => total + aula.questoes.length + aula.exercicios.length,
+    0,
+  );
 }

@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+coverage/
+package-lock.json
+public/
+src/content/
+
+.github/workflows/

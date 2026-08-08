@@ -1,0 +1,34 @@
+name: Sugerir melhoria de conteúdo
+description: Proponha correção, fonte ou nova aula
+labels: [conteudo]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Conteúdo histórico deve vir acompanhado de contexto e, sempre que possível, fontes confiáveis.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tipo de sugestão
+      options:
+        - Correção factual
+        - Clareza ou linguagem inclusiva
+        - Nova aula
+        - Nova questão ou exercício
+        - Nova narrativa de apoio
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta
+      description: Explique a alteração e em qual aula ela se aplica.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Fontes e referências
+      description: Inclua URLs, obras, autores ou documentos oficiais que embasem a sugestão.
+    validations:
+      required: true

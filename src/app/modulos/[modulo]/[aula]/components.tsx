@@ -1,91 +1,169 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useId, useState } from "react";
 
-interface Questao {
-  enunciado: string;
-  alternativas: string[];
-  correta: number;
-  comentario: string;
-}
+import type { Exercicio, Questao } from "@/data/curso";
 
-interface Exercicio {
-  enunciado: string;
-  alternativas: string[];
-  correta: number;
+function AlternativeLabel({ index }: { index: number }) {
+  return (
+    <span aria-hidden="true" className="mr-3 font-semibold text-slate-300">
+      {String.fromCharCode(65 + index)}.
+    </span>
+  );
 }
 
 export function QuestaoComponent({ questao }: { questao: Questao }) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  
+  const feedbackId = useId();
+  const answered = selectedAnswer !== null;
+  const isCorrect = selectedAnswer === questao.correta;
+
+  function reset() {
+    setSelectedAnswer(null);
+  }
+
   return (
-    <div className="space-y-4">
-      <p className="text-white/90">{questao.enunciado}</p>
-      
-      <div className="space-y-2">
-        {questao.alternativas.map((alt, aIndex) => (
-          <button
-            key={aIndex}
-            onClick={() => setSelectedAnswer(aIndex)}
-            className={`w-full text-left p-4 rounded-xl transition-all text-sm ${
-              selectedAnswer === aIndex
-                ? aIndex === questao.correta
-                  ? 'bg-green-500/20 border-2 border-green-500'
-                  : 'bg-red-500/20 border-2 border-red-500'
-                : 'bg-white/5 border border-white/10 hover:bg-white/10'
-            }`}
-          >
-            <span className="text-white/60 mr-2">
-              {String.fromCharCode(97 + aIndex)})
-            </span>
-            <span className="text-white/90">{alt}</span>
-          </button>
-        ))}
+    <fieldset className="space-y-4">
+      <legend className="text-base leading-7 text-white sm:text-lg">
+        {questao.enunciado}
+      </legend>
+
+      <div className="space-y-3">
+        {questao.alternativas.map((alternativa, index) => {
+          const selected = selectedAnswer === index;
+          const correct = index === questao.correta;
+          const stateClass = !answered
+            ? "border-white/10 bg-white/5 hover:border-amber-300/50 hover:bg-white/10"
+            : correct
+              ? "border-emerald-400/70 bg-emerald-400/15"
+              : selected
+                ? "border-rose-400/70 bg-rose-400/15"
+                : "border-white/10 bg-white/3 opacity-70";
+
+          return (
+            <button
+              aria-describedby={answered ? feedbackId : undefined}
+              aria-pressed={selected}
+              className={`flex w-full items-start rounded-xl border p-4 text-left text-sm leading-6 text-slate-100 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:cursor-default sm:text-base ${stateClass}`}
+              disabled={answered}
+              key={alternativa}
+              onClick={() => setSelectedAnswer(index)}
+              type="button"
+            >
+              <AlternativeLabel index={index} />
+              <span>{alternativa}</span>
+            </button>
+          );
+        })}
       </div>
-      
-      {selectedAnswer !== null && (
-        <div className={`p-4 rounded-xl ${
-          selectedAnswer === questao.correta
-            ? 'bg-green-500/20 border border-green-500/30'
-            : 'bg-red-500/20 border border-red-500/30'
-        }`}>
-          <p className="text-white font-medium mb-2">
-            {selectedAnswer === questao.correta ? '✅ Correto!' : '❌ Incorreto'}
+
+      {answered && (
+        <div
+          aria-live="polite"
+          className={`rounded-xl border p-4 ${
+            isCorrect
+              ? "border-emerald-400/30 bg-emerald-400/10"
+              : "border-rose-400/30 bg-rose-400/10"
+          }`}
+          id={feedbackId}
+        >
+          <p className="font-semibold text-white">
+            {isCorrect ? "✓ Resposta correta" : "Revise este conceito"}
           </p>
-          <p className="text-white/80 text-sm">{questao.comentario}</p>
+          <p className="mt-1 text-sm leading-6 text-slate-200">
+            {questao.comentario}
+          </p>
+          {!isCorrect && (
+            <button
+              className="mt-3 text-sm font-semibold text-amber-300 underline decoration-amber-400/50 underline-offset-4 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              onClick={reset}
+              type="button"
+            >
+              Tentar novamente
+            </button>
+          )}
         </div>
       )}
-    </div>
+    </fieldset>
   );
 }
 
-export function ExercicioComponent({ exercicio, index }: { exercicio: Exercicio; index: number }) {
-  const [showAnswer, setShowAnswer] = useState(false);
-  
+export function ExercicioComponent({
+  exercicio,
+  index,
+}: {
+  exercicio: Exercicio;
+  index: number;
+}) {
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const feedbackId = useId();
+  const answered = selectedAnswer !== null;
+  const isCorrect = selectedAnswer === exercicio.correta;
+
+  function reset() {
+    setSelectedAnswer(null);
+  }
+
   return (
-    <div className="mb-6 last:mb-0">
-      <p className="text-white/90 mb-4">{index + 1}. {exercicio.enunciado}</p>
-      
+    <fieldset className="space-y-4 border-b border-white/10 pb-7 last:border-b-0 last:pb-0">
+      <legend className="text-base leading-7 text-white">
+        <span className="mr-2 font-bold text-amber-300">{index + 1}.</span>
+        {exercicio.enunciado}
+      </legend>
+
       <div className="space-y-2">
-        {exercicio.alternativas.map((alt, aIndex) => (
-          <button
-            key={aIndex}
-            onClick={() => setShowAnswer(true)}
-            className="w-full text-left p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm"
-          >
-            <span className="text-white/60 mr-2">
-              {String.fromCharCode(97 + aIndex)})
-            </span>
-            <span className="text-white/80">{alt}</span>
-          </button>
-        ))}
+        {exercicio.alternativas.map((alternativa, alternativeIndex) => {
+          const selected = selectedAnswer === alternativeIndex;
+          const correct = alternativeIndex === exercicio.correta;
+          const stateClass = !answered
+            ? "border-white/10 bg-white/5 hover:border-amber-300/50 hover:bg-white/10"
+            : correct
+              ? "border-emerald-400/70 bg-emerald-400/15"
+              : selected
+                ? "border-rose-400/70 bg-rose-400/15"
+                : "border-white/10 bg-white/3 opacity-70";
+
+          return (
+            <button
+              aria-describedby={answered ? feedbackId : undefined}
+              aria-pressed={selected}
+              className={`flex w-full items-start rounded-xl border p-3 text-left text-sm leading-6 text-slate-100 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:cursor-default ${stateClass}`}
+              disabled={answered}
+              key={alternativa}
+              onClick={() => setSelectedAnswer(alternativeIndex)}
+              type="button"
+            >
+              <AlternativeLabel index={alternativeIndex} />
+              <span>{alternativa}</span>
+            </button>
+          );
+        })}
       </div>
-      
-      {showAnswer && (
-        <p className="mt-3 text-sm text-green-400">
-          Resposta correta: {String.fromCharCode(97 + exercicio.correta)})
-        </p>
+
+      {answered && (
+        <div aria-live="polite" className="text-sm" id={feedbackId}>
+          <p
+            className={
+              isCorrect
+                ? "font-semibold text-emerald-300"
+                : "font-semibold text-rose-300"
+            }
+          >
+            {isCorrect
+              ? "✓ Você acertou!"
+              : `A resposta correta é ${String.fromCharCode(65 + exercicio.correta)}.`}
+          </p>
+          {!isCorrect && (
+            <button
+              className="mt-2 font-semibold text-amber-300 underline decoration-amber-400/50 underline-offset-4 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              onClick={reset}
+              type="button"
+            >
+              Tentar novamente
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    </fieldset>
   );
 }
