@@ -1,0 +1,35 @@
+name: Relatar problema
+description: Conte-nos o que não funcionou
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a melhorar o História ENEM.
+  - type: textarea
+    id: description
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema de forma objetiva.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Como reproduzir?
+      placeholder: |
+        1. Acesse ...
+        2. Clique em ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Navegador e dispositivo
+      placeholder: "Ex.: Chrome 130 no Android 14"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Captura de tela ou contexto adicional

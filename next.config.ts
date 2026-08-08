@@ -1,18 +1,21 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === 'production';
+const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim();
+const fallbackBasePath =
+  process.env.GITHUB_ACTIONS === "true" ? "/historia_enem" : "";
+const basePath = configuredBasePath
+  ? `/${configuredBasePath.replace(/^\/+|\/+$/g, "")}`
+  : fallbackBasePath;
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  output: "export",
   trailingSlash: true,
+  basePath,
   images: {
     unoptimized: true,
   },
-  basePath: isProd ? '/historia_enem' : '',
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  reactStrictMode: false,
+  reactStrictMode: true,
+  poweredByHeader: false,
 };
 
 export default nextConfig;

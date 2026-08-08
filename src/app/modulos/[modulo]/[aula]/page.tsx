@@ -1,217 +1,281 @@
-import Link from 'next/link';
-import { modulos, getModuloBySlug } from '@/data/curso';
-import { QuestaoComponent, ExercicioComponent } from './components';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-interface Props {
+import { LessonCompletion } from "@/components/course-progress";
+import { MarkdownContent } from "@/components/markdown-content";
+import {
+  getAulaBySlug,
+  getModuloBySlug,
+  getNarrativaBySlug,
+  modulos,
+} from "@/data/curso";
+
+import { ExercicioComponent, QuestaoComponent } from "./components";
+
+interface LessonPageProps {
   params: Promise<{ modulo: string; aula: string }>;
 }
 
-export async function generateStaticParams() {
-  const params: { modulo: string; aula: string }[] = [];
-  
-  modulos.forEach((modulo) => {
-    modulo.aulas.forEach((aula) => {
-      params.push({
-        modulo: modulo.slug,
-        aula: aula.slug,
-      });
-    });
-  });
-  
-  return params;
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return modulos.flatMap((modulo) =>
+    modulo.aulas.map((aula) => ({ modulo: modulo.slug, aula: aula.slug })),
+  );
 }
 
-export default async function AulaPage({ params }: Props) {
-  const { modulo: moduloSlug, aula: aulaSlug } = await params;
-  const modulo = getModuloBySlug(moduloSlug);
-  const aula = modulo?.aulas.find(a => a.slug === aulaSlug);
-  
-  if (!modulo || !aula) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Aula não encontrada</h1>
-          <Link href="/modulos" className="text-yellow-400 hover:underline">
-            Voltar para módulos
-          </Link>
-        </div>
-      </div>
-    );
+export async function generateMetadata({
+  params,
+}: LessonPageProps): Promise<Metadata> {
+  const { modulo: moduleSlug, aula: lessonSlug } = await params;
+  const aula = getAulaBySlug(moduleSlug, lessonSlug);
+
+  if (!aula) {
+    return { title: "Aula não encontrada" };
   }
-  
-  const aulaIndex = modulo.aulas.findIndex(a => a.id === aula.id);
-  const prevAula = aulaIndex > 0 ? modulo.aulas[aulaIndex - 1] : null;
-  const nextAula = aulaIndex < modulo.aulas.length - 1 ? modulo.aulas[aulaIndex + 1] : null;
-  
+
+  return {
+    title: aula.titulo,
+    description: aula.dicaEnem,
+  };
+}
+
+export default async function LessonPage({ params }: LessonPageProps) {
+  const { modulo: moduleSlug, aula: lessonSlug } = await params;
+  const modulo = getModuloBySlug(moduleSlug);
+  const aula = getAulaBySlug(moduleSlug, lessonSlug);
+
+  if (!modulo || !aula) {
+    notFound();
+  }
+
+  const lessonIndex = modulo.aulas.findIndex((item) => item.id === aula.id);
+  const previousLesson =
+    lessonIndex > 0 ? modulo.aulas[lessonIndex - 1] : undefined;
+  const nextLesson = modulo.aulas[lessonIndex + 1];
+  const narrativa = getNarrativaBySlug(aula.slug);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 py-12">
-      <div className="container mx-auto px-4">
-        {/* Breadcrumb */}
-        <nav className="mb-6">
-          <ol className="flex items-center gap-2 text-sm text-white/60 flex-wrap">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_right,_rgba(251,146,60,0.16),_transparent_25%),linear-gradient(135deg,_#0f172a,_#1e1b4b_55%,_#020617)] pb-20 pt-28">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <nav aria-label="Breadcrumb" className="mb-8 text-sm text-slate-400">
+          <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link
+                className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                href="/"
+              >
                 Início
               </Link>
             </li>
-            <li>→</li>
+            <li aria-hidden="true">/</li>
             <li>
-              <Link href="/modulos" className="hover:text-white transition-colors">
+              <Link
+                className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                href="/modulos/"
+              >
                 Módulos
               </Link>
             </li>
-            <li>→</li>
+            <li aria-hidden="true">/</li>
             <li>
-              <Link href={`/modulos/${modulo.slug}`} className="hover:text-white transition-colors">
+              <Link
+                className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                href={`/modulos/${modulo.slug}/`}
+              >
                 {modulo.titulo}
               </Link>
             </li>
-            <li>→</li>
-            <li className="text-white font-medium">{aula.titulo}</li>
+            <li aria-hidden="true">/</li>
+            <li
+              aria-current="page"
+              className="max-w-[16rem] truncate font-medium text-slate-200 sm:max-w-md"
+            >
+              {aula.titulo}
+            </li>
           </ol>
         </nav>
-        
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div 
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-                style={{ backgroundColor: `${modulo.cor}30` }}
+
+        <div className="mx-auto max-w-4xl">
+          <header className="mb-8">
+            <div className="flex items-center gap-3 text-sm font-medium text-slate-300">
+              <span
+                aria-hidden="true"
+                className="grid size-10 place-items-center rounded-xl text-xl"
+                style={{ backgroundColor: `${modulo.cor}33` }}
               >
                 {modulo.icone}
-              </div>
-              <span className="text-white/60 text-sm">{modulo.titulo}</span>
+              </span>
+              <span>{modulo.titulo}</span>
+              <span aria-hidden="true" className="text-slate-600">
+                •
+              </span>
+              <span>
+                Aula {lessonIndex + 1} de {modulo.aulas.length}
+              </span>
             </div>
-            
-            <h1 className="text-3xl md:text-4xl font-bold text-white">
+            <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">
               {aula.titulo}
             </h1>
-          </div>
-          
-          {/* Content */}
-          <article className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
-            <div className="prose prose-invert max-w-none">
-              {aula.conteudo.split('\n').map((linha, index) => {
-                // Handle headers
-                if (linha.startsWith('## ')) {
-                  return (
-                    <h2 key={index} className="text-2xl font-bold text-white mt-8 mb-4">
-                      {linha.replace('## ', '')}
-                    </h2>
-                  );
-                }
-                if (linha.startsWith('### ')) {
-                  return (
-                    <h3 key={index} className="text-xl font-semibold text-white mt-6 mb-3">
-                      {linha.replace('### ', '')}
-                    </h3>
-                  );
-                }
-                // Handle bold text
-                if (linha.startsWith('**') && linha.endsWith('**')) {
-                  return (
-                    <p key={index} className="text-white font-semibold mt-4 mb-2">
-                      {linha.replace(/\*\*/g, '')}
-                    </p>
-                  );
-                }
-                // Handle bullet points
-                if (linha.startsWith('- ')) {
-                  return (
-                    <li key={index} className="text-white/80 ml-4">
-                      {linha.replace('- ', '')}
-                    </li>
-                  );
-                }
-                // Handle empty lines
-                if (linha.trim() === '') {
-                  return <div key={index} className="h-4" />;
-                }
-                // Regular paragraph
-                return (
-                  <p key={index} className="text-white/80 mb-4 leading-relaxed">
-                    {linha}
-                  </p>
-                );
-              })}
-            </div>
+          </header>
+
+          <article className="rounded-3xl border border-white/10 bg-slate-950/35 p-6 shadow-2xl shadow-slate-950/20 sm:p-8">
+            <MarkdownContent content={aula.conteudo} />
           </article>
-          
-          {/* Dica do ENEM */}
-          <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-2xl p-6 mb-8">
-            <div className="flex items-start gap-4">
-              <span className="text-3xl">💡</span>
+
+          <aside
+            className="mt-6 rounded-2xl border border-amber-300/25 bg-gradient-to-r from-amber-400/15 to-orange-400/10 p-6"
+            aria-labelledby="dica-enem"
+          >
+            <div className="flex gap-4">
+              <span aria-hidden="true" className="text-3xl">
+                💡
+              </span>
               <div>
-                <h3 className="text-lg font-semibold text-yellow-400 mb-2">Dica do ENEM</h3>
-                <p className="text-white/80">{aula.dicaEnem}</p>
+                <h2 className="text-lg font-bold text-amber-100" id="dica-enem">
+                  Dica do ENEM
+                </h2>
+                <p className="mt-2 leading-7 text-amber-50/85">
+                  {aula.dicaEnem}
+                </p>
               </div>
             </div>
-          </div>
-          
-          {/* Questões Comentadas */}
+          </aside>
+
+          {narrativa && (
+            <section
+              className="mt-6 rounded-2xl border border-violet-300/20 bg-violet-400/10 p-6"
+              aria-labelledby="narrativa-title"
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-violet-200">
+                Leitura complementar
+              </p>
+              <div className="mt-3 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <h2
+                    className="text-xl font-bold text-white"
+                    id="narrativa-title"
+                  >
+                    {narrativa.titulo}
+                  </h2>
+                  <p className="mt-2 max-w-2xl leading-7 text-violet-100/75">
+                    {narrativa.descricao}
+                  </p>
+                  <p className="mt-3 text-sm font-medium text-violet-200">
+                    {narrativa.tempoLeitura}
+                    {narrativa.audio ? " · inclui narração" : ""}
+                  </p>
+                </div>
+                <Link
+                  className="shrink-0 rounded-xl border border-violet-200/30 bg-violet-200/10 px-4 py-2.5 text-center text-sm font-bold text-violet-100 transition hover:bg-violet-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-200"
+                  href={`/modulos/${modulo.slug}/${aula.slug}/conto/`}
+                >
+                  Ler narrativa →
+                </Link>
+              </div>
+            </section>
+          )}
+
           {aula.questoes.length > 0 && (
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
-              <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <span>📝</span> Questão Comentada
+            <section
+              className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
+              aria-labelledby="questoes-comentadas"
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
+                Pratique
+              </p>
+              <h2
+                className="mt-2 text-2xl font-bold text-white"
+                id="questoes-comentadas"
+              >
+                {aula.questoes.length === 1
+                  ? "Questão comentada"
+                  : "Questões comentadas"}
               </h2>
-              
-              {aula.questoes.map((questao, qIndex) => (
-                <QuestaoComponent key={qIndex} questao={questao} />
-              ))}
-            </div>
+              <div className="mt-6 space-y-8">
+                {aula.questoes.map((questao) => (
+                  <QuestaoComponent key={questao.enunciado} questao={questao} />
+                ))}
+              </div>
+            </section>
           )}
-          
-          {/* Exercícios */}
+
           {aula.exercicios.length > 0 && (
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
-              <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <span>📚</span> Exercícios de Fixação
+            <section
+              className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
+              aria-labelledby="exercicios-fixacao"
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
+                Consolide
+              </p>
+              <h2
+                className="mt-2 text-2xl font-bold text-white"
+                id="exercicios-fixacao"
+              >
+                Exercícios de fixação
               </h2>
-              
-              {aula.exercicios.map((exercicio, eIndex) => (
-                <ExercicioComponent key={eIndex} exercicio={exercicio} index={eIndex} />
-              ))}
-            </div>
+              <div className="mt-6 space-y-7">
+                {aula.exercicios.map((exercicio, index) => (
+                  <ExercicioComponent
+                    exercicio={exercicio}
+                    index={index}
+                    key={exercicio.enunciado}
+                  />
+                ))}
+              </div>
+            </section>
           )}
-          
-          {/* Navigation */}
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-center pt-8 border-t border-white/10">
-            {prevAula ? (
-              <Link 
-                href={`/modulos/${modulo.slug}/${prevAula.slug}`}
-                className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors w-full md:w-auto"
-              >
-                <span>←</span>
-                <div className="text-left">
-                  <div className="text-xs text-white/50">Aula anterior</div>
-                  <div className="text-white font-medium line-clamp-1">{prevAula.titulo}</div>
-                </div>
-              </Link>
-            ) : (
-              <div />
-            )}
-            
-            {nextAula ? (
-              <Link 
-                href={`/modulos/${modulo.slug}/${nextAula.slug}`}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-semibold rounded-xl hover:scale-105 transition-transform w-full md:w-auto justify-end"
-              >
-                <div className="text-right">
-                  <div className="text-xs text-gray-700">Próxima aula</div>
-                  <div className="font-bold line-clamp-1">{nextAula.titulo}</div>
-                </div>
-                <span>→</span>
-              </Link>
-            ) : (
-              <Link 
-                href="/modulos"
-                className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
-              >
-                Ver todos os módulos
-              </Link>
-            )}
+
+          <div className="mt-6">
+            <LessonCompletion lessonId={aula.id} />
           </div>
+
+          <nav
+            aria-label="Navegação entre aulas"
+            className="mt-10 grid gap-3 border-t border-white/10 pt-8 sm:grid-cols-2"
+          >
+            {previousLesson ? (
+              <Link
+                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                href={`/modulos/${modulo.slug}/${previousLesson.slug}/`}
+              >
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
+                  ← Aula anterior
+                </span>
+                <span className="mt-2 block font-semibold text-white transition group-hover:text-amber-200">
+                  {previousLesson.titulo}
+                </span>
+              </Link>
+            ) : (
+              <Link
+                className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm font-semibold text-slate-200 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                href={`/modulos/${modulo.slug}/`}
+              >
+                ← Voltar ao módulo
+              </Link>
+            )}
+            {nextLesson ? (
+              <Link
+                className="group rounded-2xl bg-gradient-to-r from-amber-300 to-orange-400 p-4 text-right text-slate-950 transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-100"
+                href={`/modulos/${modulo.slug}/${nextLesson.slug}/`}
+              >
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-slate-700">
+                  Próxima aula →
+                </span>
+                <span className="mt-2 block font-bold transition group-hover:translate-x-0.5">
+                  {nextLesson.titulo}
+                </span>
+              </Link>
+            ) : (
+              <Link
+                className="rounded-2xl bg-gradient-to-r from-amber-300 to-orange-400 p-4 text-right text-sm font-bold text-slate-950 transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-100"
+                href="/modulos/"
+              >
+                Concluir módulo →
+              </Link>
+            )}
+          </nav>
         </div>
       </div>
     </div>

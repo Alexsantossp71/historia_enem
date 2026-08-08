@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questões de segurança
+    url: https://github.com/Alexsantossp71/historia_enem/security/advisories/new
+    about: Use um alerta privado para relatar vulnerabilidades.
