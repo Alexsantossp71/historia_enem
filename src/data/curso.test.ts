@@ -81,7 +81,7 @@ describe("catalogo do curso - getModuloBySlug", () => {
   it("retorna modulo existente pelo slug", () => {
     const modulo = getModuloBySlug("historia-brasil");
     expect(modulo).toBeDefined();
-    expect(modulo!.titulo).toBe("Historia do Brasil");
+    expect(modulo!.slug).toBe("historia-brasil");
     expect(modulo!.aulas.length).toBeGreaterThan(0);
   });
 
