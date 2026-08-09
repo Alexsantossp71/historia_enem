@@ -2,7 +2,7 @@
   "name": "historia-enem",
   "version": "1.0.0",
   "private": true,
-  "description": "Curso aberto e estático de História para o ENEM.",
+  "description": "Curso aberto e est\u00e1tico de Hist\u00f3ria para o ENEM.",
   "license": "MIT",
   "engines": {
     "node": ">=20.9.0"
@@ -32,7 +32,7 @@
     "@types/node": "^26.1.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "eslint": "^10.8.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^16.1.1",
     "prettier": "^3.5.3",
     "serve": "^14.2.6",
